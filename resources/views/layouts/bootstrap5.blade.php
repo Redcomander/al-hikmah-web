@@ -122,7 +122,6 @@
             margin-top: 0;
             padding-top: 0;
         }
-
     </style>
 </head>
 
@@ -134,7 +133,10 @@
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path
+                        d="M1.5 0A1.5 1.5 0 0 1 3 1.5V3h10V1.5A1.5 1.5 0 0 1 15.5 0h-13zM3 5.5a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1-3 0v-1zM14 5a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12z" />
+                </svg>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
@@ -176,16 +178,13 @@
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                                 id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <img src="{{ asset('storage/' . Auth::user()->foto_profil) }}" class="rounded-circle"
+                                <img src="{{ asset('storage/' . Auth::user()->foto_guru) }}" class="rounded-circle"
                                     height="25" alt="Black and White Portrait of a Man" loading="lazy" />
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                                 <li>
                                     <a class="dropdown-item" href="#">My profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('profil') }}">Upload Photo</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>

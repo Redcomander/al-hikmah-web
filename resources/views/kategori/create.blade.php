@@ -81,8 +81,8 @@
             <form method="post" action="{{ url('kategori') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label for="kategori" class="form-label">Kategori</label>
-                    <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Kategori">
+                    <label for="Kategori" class="form-label">Kategori</label>
+                    <input type="text" class="form-control" id="Kategori" name="Kategori" placeholder="Kategori">
                 </div>
                 <div>
                     <button type="submit" class="btn btn-dark rounded-pill me-2"><i class="bi bi-send"></i> Submit</button>

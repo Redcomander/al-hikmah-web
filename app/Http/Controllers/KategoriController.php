@@ -29,7 +29,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         Kategori::create([
-            "kategori" => $request->kategori,
+            "Kategori" => $request->Kategori,
         ]);
 
         return redirect('article');

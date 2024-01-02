@@ -35,9 +35,9 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($article as $col)
-                                        <tr>
+                                        <tr class="align-middle">
                                             <td>{{ $col->title }}</td>
-                                            <td>{{ $col->kategori }}</td>
+                                            <td>{{ $col->Kategori->Kategori}}</td>
                                             <td>
                                                 <a href="{{ url('article/' . $col->id . '/edit') }}"
                                                     class="btn btn-sm btn-info">
@@ -89,7 +89,7 @@
                                                         {!! $col->content !!}
                                                         <div style="margin-bottom: 20px;"></div>
                                                         <figure class="text-center">
-                                                            <img src="{{ asset('storage/' . $col->user->foto_profil) }}"
+                                                            <img src="{{ asset('storage/' . $col->user->foto_guru) }}"
                                                                 alt="{{ $col->user->name }}"
                                                                 class="img-fluid rounded-circle img-thumbnail"
                                                                 width="100">

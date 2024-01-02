@@ -91,8 +91,13 @@
                     <input value="{{ $article->content }}" type="hidden" id="quill-content" name="content">
                 </div>
                 <div class="mb-3">
-                    <label for="kategori" class="form-label">Kategori</label>
-                    <input value="{{ $article->kategori }}" type="text" class="form-control" id="kategori" name="kategori" placeholder="Kategori Artikel">
+                    <label for="kategori_id" class="form-label">Kategori</label>
+                    <select id="kategori_id" name="kategori_id" class="form-select">
+                        <option selected disabled>-- Pilih Kategori --</option>
+                        @foreach ($Kategori as $col)
+                            <option @if($article->kategori_id == $col->id) selected @endif value="{{ $col->id }}">{{ $col->Kategori }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="user_id" class="form-label">Author</label>

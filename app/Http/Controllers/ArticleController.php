@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\article;
+use App\Models\kategori;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -13,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = article::paginate(10);
+        $article = article::with('kategori')->paginate(10);
         return view('article.index', compact('article'));
     }
 
@@ -23,9 +24,10 @@ class ArticleController extends Controller
     public function create()
     {
         $author = User::select(['name','id'])->get();
+        $Kategori = kategori::select(['Kategori','id'])->get();
         // $gambar_article = request('gambar_article')->store('article_picture');
 
-        return view('article.create', compact('author'));
+        return view('article.create', compact('author', 'Kategori'));
 
 
     }
@@ -51,7 +53,7 @@ class ArticleController extends Controller
             "title" => $request->title,
             "gambar_article" => $gambar_articlePath,
             "content" => $request->content,
-            "kategori" => $request->kategori,
+            "kategori_id" => $request->kategori_id,
             "user_id" => $request->user_id,
             "status" => $status, // Set the status based on the presence of the "draft" parameter
         ]);
@@ -73,9 +75,11 @@ class ArticleController extends Controller
     public function edit(article $article)
     {
         $author = User::select(['name','id'])->get();
+        $Kategori = kategori::select(['Kategori','id'])->get();
+
         // $gambar_article = request('gambar_article')->store('article_picture');
 
-        return view('article.edit', compact('author', 'article'));
+        return view('article.edit', compact('author', 'article', 'Kategori'));
     }
 
     /**
@@ -101,7 +105,7 @@ class ArticleController extends Controller
         "title" => $request->title,
         "gambar_article" => $gambar_articlePath,
         "content" => $request->content,
-        "kategori" => $request->kategori,
+        "kategori_id" => $request->kategori_id,
         "user_id" => $request->user_id,
         "status" => $status, // Set the status based on the presence of the "draft" parameter
     ]);
