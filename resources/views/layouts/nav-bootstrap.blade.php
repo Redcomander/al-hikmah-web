@@ -125,8 +125,31 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
                     </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="far fa-calendar-days me-2"></i><span>Kalender Akademik</span></a>
+                    <div class="list-group list-group-flush mx-2">
+                        <a class="list-group-item py-2 ripple">
+                            <strong>
+                                <i class="fa-solid fa-book"></i> Pendaftaran
+                            </strong>
+                        </a>
+                        <!-- Normal list items again -->
+                        <a href="{{ url('/pendaftaran') }}"
+                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran') ? 'active' : '' }}">
+                            <i class="fas fa-some-icon me-2"></i><span>Daftar Pendaftaran</span>
+                        </a>
+                        </a>
+                        <a href="{{ route('pendaftaran.verify') }}"
+                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran/verify*') ? 'active' : '' }}">
+                            <i class="fas fa-some-icon me-2"></i><span>Terverifikasi</span>
+                        </a>
+
+                        <a href="{{ route('pendaftaran.unverify') }}"
+                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran/unverify*') ? 'active' : '' }}">
+                            <i class="fas fa-some-icon me-2"></i><span>Belum Terverifikasi</span>
+                        </a>
+
+                    </div>
+
                 </div>
-            </div>
         </nav>
         <!-- Sidebar -->
 
@@ -187,8 +210,8 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
     </main>
     <!--Main layout-->
     <script src="
-            https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js
-            "></script>
+                                        https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js
+                                        "></script>
 
     <script>
         $(document).ready(function() {

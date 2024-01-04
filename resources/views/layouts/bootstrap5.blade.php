@@ -150,7 +150,7 @@
                         <a class="nav-link" href="#">Galeri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pendaftaran</a>
+                        <a class="nav-link {{ Request::is('pendaftarandepan') ? 'active-link' : '' }}" href="{{ route('pendaftarandepan') }}">Pendaftaran</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -199,7 +199,6 @@
                         </div>
                     @else
                         <a class="btn btn-outline-light me-2" href="{{ route('login') }}">Login</a>
-                        <a class="btn btn-light" href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             </div>
