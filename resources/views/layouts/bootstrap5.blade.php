@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('layouts.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -257,42 +258,24 @@
 
                     <!-- Grid column -->
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold">Products</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p>
-                            <a href="#!" class="text-white">MDBootstrap</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-white">MDWordPress</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-white">BrandFlow</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-white">Bootstrap Angular</a>
-                        </p>
+
                     </div>
                     <!-- Grid column -->
 
                     <!-- Grid column -->
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
-                        <h6 class="text-uppercase fw-bold">Useful links</h6>
+                        <h6 class="text-uppercase fw-bold">Navigasi</h6>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p>
-                            <a href="#!" class="text-white">Your Account</a>
+                            <a href="/" class="text-white">Beranda</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-white">Become an Affiliate</a>
+                            <a href="#!" class="text-white">Galeri</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-white">Shipping Rates</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-white">Help</a>
+                            <a href="#!" class="text-white">Informasi</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -300,13 +283,11 @@
                     <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
-                        <h6 class="text-uppercase fw-bold">Contact</h6>
+                        <h6 class="text-uppercase fw-bold">Kontak</h6>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
                         <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-                        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                        <p><i class="bi bi-whatsapp"></i> 085237563046</p>
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -330,7 +311,10 @@
             $('.dropdown-toggle').dropdown();
         });
     </script>
-
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init();
+      </script>
 
 </body>
 

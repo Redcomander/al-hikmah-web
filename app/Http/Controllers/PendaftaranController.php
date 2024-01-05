@@ -12,7 +12,8 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        return view('pendaftaran.index');
+        $pendaftaran = pendaftaran::paginate(10);
+        return view('pendaftaran.index', compact('pendaftaran'));
     }
 
 
