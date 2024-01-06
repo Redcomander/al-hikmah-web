@@ -50,6 +50,7 @@ Route::resource('teacher', TeacherController::class);
 
 Route::resource('kategori', KategoriController::class);
 
+Route::put('pendaftaran/{id}/verify', 'App\Http\Controllers\PendaftaranController@verify');
 Route::get('pendaftaran/unverify', [PendaftaranController::class, 'belumTerverifikasi'])->name('pendaftaran.unverify');
 Route::get('pendaftaran/verify', [PendaftaranController::class, 'terverifikasi'])->name('pendaftaran.verify');
 Route::resource('pendaftaran', PendaftaranController::class);

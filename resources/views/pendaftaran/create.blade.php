@@ -99,11 +99,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="nisn" class="form-label">Nomor Induk Siswa Nasional (NISN)</label>
-                        <input type="text" class="form-control" id="nisn" name="nisn" placeholder="NISN">
+                        <input type="number" class="form-control" id="nisn" name="nisn" placeholder="NISN">
                     </div>
                     <div class="mb-3">
                         <label for="nik" class="form-label">Nomor Induk Kependudukan (NIK)</label>
-                        <input type="text" class="form-control" id="nisn" name="nisn" placeholder="NISN">
+                        <input type="number" class="form-control" id="nik" name="nik" placeholder="NIK">
                     </div>
                     <div class="mb-3">
                         <label for="agama" class="form-label">Agama</label>
@@ -123,7 +123,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="jumlah_saudara_kandung" class="form-label">Jumlah Saudara Kandung</label>
-                        <input type="text" class="form-control" id="nisn" name="nisn" placeholder="Jumlah Saudara">
+                        <input type="text" class="form-control" id="jumlah_saudara_kandung"
+                            name="jumlah_saudara_kandung" placeholder="Jumlah Saudara">
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
@@ -284,7 +285,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="no_surat_lulus" class="form-label">Nomor Surat Keterangan Lulus</label>
-                        <input type="text" class="form-control" id="nomor_surat_lulus" name="nomor_surat_lulus"
+                        <input type="text" class="form-control" id="no_surat_lulus" name="no_surat_lulus"
                             placeholder="Nomor Surat Keterangan Lulus">
                     </div>
                     <div class="mb-3">
@@ -341,9 +342,8 @@
                     </div>
                     <button type="submit" class="btn btn-dark rounded-pill me-2"><i class="bi bi-send"></i>
                         Submit</button>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
     </div>
 @endsection

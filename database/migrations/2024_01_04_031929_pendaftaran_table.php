@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pendaftaran', function (Blueprint $table) {
             $table->id();
-            $table->string('No')->nullable();
+            $table->string('no_registrasi')->nullable();
             $table->string('email_pendaftar')->nullable();
             $table->string('nama_lengkap');
             $table->string('tempat_lahir')->nullable();

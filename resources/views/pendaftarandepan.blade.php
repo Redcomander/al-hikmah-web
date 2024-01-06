@@ -1,17 +1,32 @@
 @extends('layouts.bootstrap5')
 
 @section('content')
-    <section class="section-one mb-5"
-        style="background: url('{{ asset('cover_pendaftaran_1.JPG') }}') center/cover no-repeat ">
+    <style>
+        .section-one {
+            background: url('{{ asset('cover_pendaftaran_1.PNG') }}') center/cover no-repeat;
+        }
+
+        @media (max-width: 991.97px) {
+            #heading-h1 {
+                -webkit-text-stroke: 0.5px white;
+            }
+
+            #p-heading {
+                color: black;
+            }
+        }
+    </style>
+    <section class="section-one mb-5">
         <div class="container">
             <div class="row align-items-center" style="height: 90vh;">
                 <div class="col-lg-7 col-md-7">
                     <div class="title-heading position-relative mt-4" style="z-index: 1;" data-aos="fade-right">
-                        <h1 class="heading mb-3">Pendaftaran <span class="text-success">Santri Baru</span> </h1>
-                        <p class="para-desc">Selamat datang di Sistem pendaftaran daring (online) <br> <strong>Pondok Modern
+                        <h1 id="heading-h1" class="heading mb-3"><span style="color: black;">Pendaftaran</span> <span class="text-success">Santri Baru</span>
+                        </h1>
+                        <p id="p-heading" class="para-desc">Selamat datang di Sistem pendaftaran daring (online) <br> <strong>Pondok Modern
                                 Al-Hikmah Utan Sumbawa</strong> Tahun Ajaran 2024-2025<br> bagi calon santri baru.</p>
-                        <p> <b>Gelombang I : 13 Januari - 31 Maret 2024</b> </p>
-                        <p> <b>Gelombang II : 1 April - 30 Juni 2024</b> </p>
+                        <p id="p-heading"> <b>Gelombang I : 13 Januari - 31 Maret 2024</b> </p>
+                        <p id="p-heading"> <b>Gelombang II : 1 April - 30 Juni 2024</b> </p>
                         <div class="mt-4 pt-2">
                             <a href="{{ url('pendaftaran/create') }}" class="btn btn-success mt-2 mr-2 mb-5">Formulir
                                 Pendaftaran</a>
@@ -193,7 +208,7 @@
                 <a href="https://wa.me/+6285237563046?text=Assalamu'alaikum,%20Saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20pendaftaran"
                     class="btn btn-success"><i class="bi bi-whatsapp"></i> Ustadz Imam Sudarmoko</a>
                 <a href="https://wa.me/+6282264184506?text=Assalamu'alaikum,%20Saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20pendaftaran"
-                    class="btn btn-success"><i class="bi bi-whatsapp"></i> Ustadzah Ihda Qurratul 'Aini</a>
+                    class="btn btn-success"><i class="bi bi-whatsapp"></i> Ustadzah Ihda Qurrati 'Aini</a>
                 <a href="https://wa.me/+6285931100660?text=Assalamu'alaikum,%20Saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20pendaftaran"
                     class="btn btn-success"><i class="bi bi-whatsapp"></i> Ustadz Saiful Bahri</a>
                 <a href="https://wa.me/+6285172390625?text=Assalamu'alaikum,%20Saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20pendaftaran"
@@ -201,12 +216,14 @@
             </div>
             <h4 class="text-center mb-3">Alamat Sekretariat</h4>
             <div class="d-flex justify-content-center mb-5">
-                <a href="https://maps.app.goo.gl/4tyeGuvSdW9bHxbG8" target="_blank" class="text-black"><i class="bi bi-geo-alt-fill"></i> Gedung Al-Fatihah Pondok Modern Al-Hikmah, Jl. Lintas
+                <a href="https://maps.app.goo.gl/4tyeGuvSdW9bHxbG8" target="_blank" class="text-black text-center"><i
+                        class="bi bi-geo-alt-fill"></i> Gedung Al-Fatihah Pondok Modern Al-Hikmah, Jl. Lintas
                     Sumbawa-Tano, Bina Marga, Stowe Brang, Utan, Sumbawa, NTB 84352</a>
             </div>
             <h4 class="text-center mb-3">Brosur Penerimaan Calon Santri Tahun Ajaran 2024-2025</h4>
             <div class="d-flex justify-content-center">
-                <a href="{{ asset('brosur_2024.pdf') }}" download="{{ asset('brosur_2024.pdf') }}" class="btn btn-primary">Download Brosur Disini</a>
+                <a href="{{ asset('brosur_2024.pdf') }}" download="{{ asset('brosur_2024.pdf') }}"
+                    class="btn btn-primary">Download Brosur Disini</a>
             </div>
         </div>
     </section>

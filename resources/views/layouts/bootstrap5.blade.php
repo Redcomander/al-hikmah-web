@@ -134,10 +134,7 @@
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                    <path
-                        d="M1.5 0A1.5 1.5 0 0 1 3 1.5V3h10V1.5A1.5 1.5 0 0 1 15.5 0h-13zM3 5.5a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1-3 0v-1zM14 5a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12z" />
-                </svg>
+                <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">

@@ -166,7 +166,7 @@
                             </div>
                         </label>
                         <input type="file" id="foto_guru" name="foto_guru" accept="image/*" style="display: none;">
-                        <input type="hidden" name="current_foto_guru" value="{{ $user->foto_guru }}">
+                        <input disabled type="hidden" name="current_foto_guru" value="{{ $user->foto_guru }}">
                     </div>
 
                     <div class="mb-3">

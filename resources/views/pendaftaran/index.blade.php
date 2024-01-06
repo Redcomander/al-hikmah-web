@@ -2,7 +2,6 @@
 
 @section('content')
     <style>
-
         /* Custom styles for the modal */
         .custom-modal .modal-dialog {
             max-width: 800px;
@@ -65,44 +64,61 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th>No</th>
-                                        <th>Email</th>
+                                        <th>No Registrasi</th>
                                         <th>Nama Lengkap</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Edit</th>
-                                        <th>Hapus</th>
+                                        <th>NISN</th>
+                                        <th>Kelengkapan Dokumen</th>
                                         <th>Detail</th>
+                                        <th>Status</th>
+                                        <th colspan="2">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @php
-                                            $counter = 1; // Initialize the counter
-                                        @endphp
+                                    @php
+                                        $counter = 1; // Initialize the counter
+                                    @endphp
 
                                     @forelse ($pendaftaran as $col)
                                         <tr class="align-middle">
                                             <td>{{ $counter++ }}</td>
-                                            <td>{{ $col->email_pendaftar }}</td>
-                                            <td>{{ $col->nama_lengkap }}</td>
-                                            <td>{{ $col->nama_lengkap }}</td>
-                                            <td>
-                                                <a href="{{ url('pendaftaran/' . $col->id . '/edit') }}" class="btn btn-edit">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form action="{{ url('pendaftaran/' . $col->id) }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-delete">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
+                                            <td class="text-center">{!! $col->no_registrasi ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
+                                            <td>{!! $col->nama_lengkap ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
+                                            <td class="text-center">{!! $col->nisn ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#previewModal{{ $col->id }}">
+                                                    <i class="bi bi-file-earmark-fill"></i>
+                                                </button>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                     data-bs-target="#previewModal{{ $col->id }}">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
+                                            </td>
+                                            <td class="text-center">
+                                                @if ($col->verified)
+                                                <div class="badge bg-success rounded-pill">Verified</div>
+                                                @else
+                                                    <span class="badge bg-danger rounded-pill">Unverified</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ url('pendaftaran/' . $col->id . '/edit') }}"
+                                                    class="btn btn-success">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ url('pendaftaran/' . $col->id) }}" method="post"
+                                                    id="deleteForm{{ $col->id }}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn btn-danger"
+                                                        onclick="confirmDelete('{{ $col->id }}')">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         <!-- Modal -->
@@ -114,8 +130,8 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="previewModalLabel{{ $col->id }}"
                                                             style="color: #ffffff;">Detail Santri</h5>
-                                                        <button type="button" class="btn-close btn-white" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                        <button type="button" class="btn-close btn-white"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row">
@@ -125,18 +141,23 @@
                                                             <div class="col-md-6">
                                                                 <p><strong>Nomor Induk:</strong> {{ $col->no_induk }}</p>
                                                                 <p><strong>NISN:</strong> {{ $col->nisn }}</p>
-                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}</p>
-                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}</p>
-                                                                <p><strong>Tanggal Lahir:</strong> {{ $col->tanggal_lahir }}</p>
-                                                                <p><strong>Jenis Kelamin:</strong> {{ $col->jenis_kelamin }}</p>
+                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}
+                                                                </p>
+                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}
+                                                                </p>
+                                                                <p><strong>Tanggal Lahir:</strong>
+                                                                    {{ $col->tanggal_lahir }}</p>
+                                                                <p><strong>Jenis Kelamin:</strong>
+                                                                    {{ $col->jenis_kelamin }}</p>
                                                                 <p><strong>Alamat:</strong> {{ $col->alamat }}</p>
                                                                 <p><strong>Nama Wali:</strong> {{ $col->nama_wali }}</p>
                                                                 <!-- You can add more details as needed -->
                                                             </div>
-                                                                <div class="col-md-6 text-center">
-                                                                    <img width="100%" src="{{ asset('storage/' . $col->gambar_santri) }}" alt="Gambar Santri"
-                                                                        class="img-fluid img-thumbnail">
-                                                                </div>
+                                                            <div class="col-md-6 text-center">
+                                                                <img width="100%"
+                                                                    src="{{ asset('storage/' . $col->gambar_santri) }}"
+                                                                    alt="Gambar Santri" class="img-fluid img-thumbnail">
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -151,11 +172,20 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            {{ $student->links('pagination::bootstrap-5') }}
+                            {{ $pendaftaran->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            if (window.confirm("Are you sure you want to delete this item?")) {
+                // If the user clicks "OK", submit the form
+                document.getElementById('deleteForm' + id).submit();
+            }
+        }
+    </script>
 @endsection

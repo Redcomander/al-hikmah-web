@@ -56,18 +56,25 @@ class PendaftaranController extends Controller
         $fileKartuKksPath = $request->hasFile('file_kartu_kks') ? $request->file('file_kartu_kks')->store('file_kartu_kks', 'public') : null;
         $fileFotoRapotPath = $request->hasFile('file_foto_rapot') ? $request->file('file_foto_rapot')->store('file_foto_rapot', 'public') : null;
 
+        // Get the maximum value of nomor_registrasi from the database
+        $maxNomorPendaftaran = pendaftaran::max('no_registrasi');
+
+        // Increment the maximum value to generate the next nomor_pendaftaran
+        $nextNomorPendaftaran = $maxNomorPendaftaran + 1;
+
         // Create the article with the stored file path and status
         pendaftaran::create([
-            "nomor" => $request->nomor,
+            "no_registrasi" => $nextNomorPendaftaran,
             "email_pendaftaran" => $request->email_pendaftaran,
             "nama_lengkap" => $request->nama_lengkap,
             "tempat_lahir" => $request->tempat_lahir,
             "tanggal_lahir" => $request->tanggal_lahir,
             "jenis_kelamin" => $request->jenis_kelamin,
             "nisn" => $request->nisn,
+            "nik" => $request->nik,
             "agama" => $request->agama,
             "hobi" => $request->hobi,
-            "cita-cita" => $request->cita_cita,
+            "cita_cita" => $request->cita_cita,
             "anak_ke" => $request->anak_ke,
             "jumlah_saudara_kandung" => $request->jumlah_saudara_kandung,
             "alamat" => $request->alamat,
@@ -149,19 +156,37 @@ class PendaftaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        pendaftaran::destroy($id);
+        return redirect('/pendaftaran');
     }
 
     // PendaftaranController.php
     public function belumTerverifikasi()
     {
-        return view('pendaftaran.unverify');
+        $pendaftaran = pendaftaran::paginate(10);
+        return view('pendaftaran.unverify', compact('pendaftaran'));
     }
 
     public function terverifikasi()
     {
         return view('pendaftaran.verify');
+    }
+
+    public function verify($id)
+    {
+        $pendaftaran = pendaftaran::find($id);
+
+        if ($pendaftaran) {
+            $pendaftaran->update([
+                'verified' => true,
+                'verify_by' => auth()->user()->id, // Adjust this based on your authentication logic
+            ]);
+
+            return redirect()->back()->with('success', 'Verification successful.');
+        }
+
+        return redirect()->back()->with('error', 'Invalid request.');
     }
 }
