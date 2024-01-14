@@ -119,11 +119,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="anak_ke" class="form-label">Anak Ke</label>
-                        <input type="text" class="form-control" id="anak_ke" name="anak_ke" placeholder="Anak Ke">
+                        <input type="number" class="form-control" id="anak_ke" name="anak_ke" placeholder="Anak Ke">
                     </div>
                     <div class="mb-3">
                         <label for="jumlah_saudara_kandung" class="form-label">Jumlah Saudara Kandung</label>
-                        <input type="text" class="form-control" id="jumlah_saudara_kandung"
+                        <input type="number" class="form-control" id="jumlah_saudara_kandung"
                             name="jumlah_saudara_kandung" placeholder="Jumlah Saudara">
                     </div>
                     <div class="mb-3">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="kode_pos" class="form-label">Kode Pos</label>
-                        <input type="text" class="form-control" id="kode_pos" name="kode_pos"
+                        <input type="number" class="form-control" id="kode_pos" name="kode_pos"
                             placeholder="Kode Pos">
                     </div>
                     <div class="mb-3">
@@ -178,17 +178,16 @@
                             placeholder="Nama Ayah Kandung">
                     </div>
                     <div class="mb-3">
-                        <label for="tempat_lahir_ayah" class="form-label">Tempat Lahir Ayah </label>
-                        <input type="text" class="form-control" id="tempat_lahir_ayah" name="tempat_lahir_ayah"
-                            placeholder="Tempat Lahir Ayah">
-                    </div>
-                    <div class="mb-3">
-                        <label for="tanggal_lahir_ayah" class="form-label">Tanggal Lahir Ayah</label>
-                        <input type="date" class="form-control" id="tanggal_lahir_ayah" name="tanggal_lahir_ayah">
+                        <label for="status_ayah" class="form-label">Status Ayah</label>
+                        <select name="status_ayah" id="status_ayah" class="form-select">
+                            <option selected disabled>-- Pilih status --</option>
+                            <option value="Hidup">Hidup</option>
+                            <option value="Meninggal">Meninggal</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="nik_ayah" class="form-label">Nomor Induk Kependudukan (NIK) Ayah</label>
-                        <input type="text" class="form-control" id="nik_ayah" name="nik_ayah"
+                        <input type="number" class="form-control" id="nik_ayah" name="nik_ayah"
                             placeholder="Nomor Induk Kependudukan (NIK) Ayah">
                     </div>
                     <div class="mb-3">
@@ -197,9 +196,8 @@
                             placeholder="Pekerjaan Ayah">
                     </div>
                     <div class="mb-3">
-                        <label for="no_hp_ayah" class="form-label">Nomor Handphone Ayah</label>
-                        <input type="text" class="form-control" id="no_hp_ayah" name="no_hp_ayah"
-                            placeholder="Nomor Handphone Ayah">
+                        <label for="alamat_ayah" class="form-label">Alamat Ayah</label>
+                        <textarea name="alamat_ayah" id="alamat_ayah" cols="30" rows="10" placeholder="Alamat Ayah"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="nama_ibu_kandung" class="form-label">Nama Ibu Kandung</label>
@@ -207,18 +205,16 @@
                             placeholder="Nama Ibu Kandung">
                     </div>
                     <div class="mb-3">
-                        <label for="tempat_lahir_ibu" class="form-label">Tempat Lahir Ibu</label>
-                        <input type="text" class="form-control" id="tempat_lahir_ibu" name="tempat_lahir_ibu"
-                            placeholder="Tempat Lahir Ibu">
-                    </div>
-                    <div class="mb-3">
-                        <label for="tanggal_lahir_ibu" class="form-label">Tanggal Lahir Ibu</label>
-                        <input type="date" class="form-control" id="tanggal_lahir_ibu" name="tanggal_lahir_ibu"
-                            placeholder="Tanggal Lahir Ibu">
+                        <label for="status_ibu" class="form-label">Status Ibu</label>
+                        <select name="status_ibu" id="status_ibu" class="form-select">
+                            <option selected disabled>-- Pilih status --</option>
+                            <option value="Hidup">Hidup</option>
+                            <option value="Meninggal">Meninggal</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="nik_ibu" class="form-label">Nomor Induk Kependudukan (NIK) Ibu</label>
-                        <input type="text" class="form-control" id="nik_ibu" name="nik_ibu"
+                        <input type="number" class="form-control" id="nik_ibu" name="nik_ibu"
                             placeholder="Nomor Induk Kependudukan (NIK) Ibu">
                     </div>
                     <div class="mb-3">
@@ -227,9 +223,8 @@
                             placeholder="Pekerjaan Ibu">
                     </div>
                     <div class="mb-3">
-                        <label for="no_hp_ibu" class="form-label">Nomor Handphone Ibu</label>
-                        <input type="text" class="form-control" id="no_hp_ibu" name="no_hp_ibu"
-                            placeholder="Nomor Handphone Ibu">
+                        <label for="alamat_ibu" class="form-label">Alamat Ibu</label>
+                        <textarea name="alamat_ibu" id="alamat_ibu" cols="30" rows="10" placeholder="Alamat Ibu"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="nama_wali" class="form-label">Nama Wali</label>
@@ -237,14 +232,13 @@
                             placeholder="Nama Wali">
                     </div>
                     <div class="mb-3">
-                        <label for="tempat_lahir_wali" class="form-label">Tempat Lahir Wali</label>
-                        <input type="text" class="form-control" id="tempat_lahir_wali" name="tempat_lahir_wali"
-                            placeholder="Tempat Lahir Wali">
+                        <label for="nik_wali" class="form-label">Nomor Induk Kependudukan (NIK) Wali</label>
+                        <input type="number" class="form-control" id="nik_wali" name="nik_wali"
+                            placeholder="Nomor Induk Kependudukan (NIK) Wali">
                     </div>
                     <div class="mb-3">
-                        <label for="tanggal_lahir_wali" class="form-label">Tanggal Lahir Wali</label>
-                        <input type="date" class="form-control" id="tanggal_lahir_wali" name="tanggal_lahir_wali"
-                            placeholder="Tanggal Lahir Wali">
+                        <label for="alamat_wali" class="form-label">Alamat Wali</label>
+                        <textarea name="alamat_wali" id="alamat_wali" cols="30" rows="10" placeholder="Alamat Wali"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="penghasilan" class="form-label">Penghasilan Orang Tua/Wali per Bulan dalam Rupiah
@@ -254,17 +248,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="no_kks" class="form-label">Nomor Kartu Keluarga Sejahtera (Opsional)</label>
-                        <input type="text" class="form-control" id="no_kks" name="no_kks"
+                        <input type="number" class="form-control" id="no_kks" name="no_kks"
                             placeholder="Nomor Kartu Keluarga Sejahtera (Opsional)">
                     </div>
                     <div class="mb-3">
                         <label for="no_pkh" class="form-label">Nomor Program Keluarga Harapan (Opsional)</label>
-                        <input type="text" class="form-control" id="no_pkh" name="no_pkh"
+                        <input type="number" class="form-control" id="no_pkh" name="no_pkh"
                             placeholder="Nomor Program Keluarga Harapan (Opsional)">
                     </div>
                     <div class="mb-3">
                         <label for="no_kip" class="form-label">Nomor Kartu Indonesia Pintar (Opsional)</label>
-                        <input type="text" class="form-control" id="no_kip" name="no_kip"
+                        <input type="number" class="form-control" id="no_kip" name="no_kip"
                             placeholder="Nomor Kartu Indonesia Pintar (Opsional)">
                     </div>
                     <div class="mb-3">
@@ -275,7 +269,7 @@
                     <div class="mb-3">
                         <label for="npsn_sekolah" class="form-label">Nomor Pokok Sekolah Nasional (NPSN) Sekolah
                             Asal</label>
-                        <input type="text" class="form-control" id="npsn_sekolah" name="npsn_sekolah"
+                        <input type="number" class="form-control" id="npsn_sekolah" name="npsn_sekolah"
                             placeholder="Nomor Pokok Sekolah Nasional (NPSN) Sekolah Asal">
                     </div>
                     <div class="mb-3">
@@ -289,7 +283,7 @@
                             placeholder="Nomor Surat Keterangan Lulus">
                     </div>
                     <div class="mb-3">
-                        <label for="no_blangko_ijazah" class="form-label">Nomor Blangko Ijazah</label>
+                        <label for="no_blangko_ijazah" class="form-label">Nomor Blangko Ijazah (Opsional)</label>
                         <input type="text" class="form-control" id="no_blangko_ijazah" name="no_blangko_ijazah"
                             placeholder="Nomor Blangko Ijazah">
                     </div>
@@ -301,44 +295,54 @@
                     <div class="mb-3">
                         <label for="foto_3x4" class="form-label">Foto Ukuran 3X4</label>
                         <input type="file" class="form-control" id="foto_3x4" name="foto_3x4">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_ijazah" class="form-label">Ijazah</label>
                         <input type="file" class="form-control" id="file_ijazah" name="file_ijazah">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_surat_lulus" class="form-label">Surat Keterangan Lulus</label>
                         <input type="file" class="form-control" id="file_surat_lulus" name="file_surat_lulus">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_akte_lahir" class="form-label">Akte Kelahiran</label>
                         <input type="file" class="form-control" id="file_akte_lahir" name="file_akte_lahir">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_kk" class="form-label">Kartu Keluarga</label>
                         <input type="file" class="form-control" id="file_kk" name="file_kk">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_kartu_nisn" class="form-label">Kartu Nomor Induk Siswa Nasional
                             (Opsional)</label>
                         <input type="file" class="form-control" id="file_kartu_nisn" name="file_kartu_nisn">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_kartu_kip" class="form-label">Kartu Indonesia Pintar (Opsional)</label>
                         <input type="file" class="form-control" id="file_kartu_kip" name="file_kartu_kip">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_kartu_pkh" class="form-label">Kartu Program Keluarga Harapan (Opsional)</label>
                         <input type="file" class="form-control" id="file_kartu_pkh" name="file_kartu_pkh">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_kartu_kks" class="form-label">Kartu Keluarga Sejahtera (Opsional)</label>
                         <input type="file" class="form-control" id="file_kartu_kks" name="file_kartu_kks">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <div class="mb-3">
                         <label for="file_foto_rapot" class="form-label">Foto Rapot (Halaman Identitas dan Halaman Nilai
                             Semester Akhir)</label>
                         <input type="file" class="form-control" id="file_foto_rapot" name="file_foto_rapot">
+                        <small class="text-muted">Maksimal 5 MB.</small>
                     </div>
                     <button type="submit" class="btn btn-dark rounded-pill me-2"><i class="bi bi-send"></i>
                         Submit</button>

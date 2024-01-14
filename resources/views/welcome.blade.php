@@ -2,31 +2,6 @@
 
 @section('content')
     <style>
-        /* Custom CSS to align caption text to the left and increase font size */
-        .carousel-caption.text-left {
-            text-align: left !important;
-            left: 20px;
-            right: auto;
-        }
-
-        .carousel-caption.text-left h5 {
-            font-size: 50px;
-        }
-
-        .button-64 {
-            background-color: rgba(16, 141, 141, 1);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 2px 2px;
-            margin: 10px;
-            cursor: pointer;
-        }
-
-        .button-64:hover {
-            background-color: #108d8d;
-        }
-
         h2 {
             text-align: center;
         }
@@ -43,8 +18,10 @@
         }
 
         .paragraph {
-            width: 35%; /* Use the full width on small screens */
-            margin: 0 10px; /* Reduce margin to decrease space between paragraphs */
+            width: 35%;
+            /* Use the full width on small screens */
+            margin: 0 10px;
+            /* Reduce margin to decrease space between paragraphs */
         }
 
         .paragraph p {
@@ -62,74 +39,184 @@
         .fade-in.active {
             opacity: 1;
         }
+
+        .carousel-caption {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            box-sizing: border-box;
+        }
+
+        .carousel-caption h5,
+        .carousel-caption p {
+            color: #fff;
+            margin: 0;
+        }
+
+        .carousel-item img {
+            max-width: 100%;
+            /* Set the maximum width to 100% to allow scaling down */
+            height: auto;
+            /* Allow the height to adjust proportionally based on the width */
+        }
+
+        /* Adjust the width of the carousel control buttons */
+        .carousel-control-next,
+        .carousel-control-prev {
+            width: 5%;
+            /* Set your desired width here */
+        }
+
+        /* If you want to adjust the position of the controls */
+        .carousel-control-next {
+            right: 5%;
+            /* Set the right position */
+        }
+
+        .carousel-control-prev {
+            left: 0;
+            /* Set the left position */
+        }
+
+
+        @media (min-width: 900px) {
+
+
+            .carousel-item img {
+                height: 70vh;
+                object-fit: cover;
+                /* Set the image height to 80% of the viewport height on desktop */
+            }
+
+            .carousel-indicators {
+                top: auto;
+                bottom: -15px;
+                /* Adjust this value to move the indicators down */
+            }
+        }
     </style>
 
     <div class="container-fluid" style="padding: 0;">
         <div class="row">
-            <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="7000">
-                <div class="carousel-inner">
-                    @foreach ($articles as $key => $article)
-                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                            <img src="{{ asset('storage/' . $article->gambar_article) }}" class="d-block w-100 img-fluid"
-                                alt="{{ $article->title }}">
-                            <div class="carousel-caption d-none d-md-block text-left">
-                                <h5>{{ $article->title }}</h5>
-                                <p>{{ $article->created_at->format('F j, Y') }}</p>
+            <div class="container-fluid" style="padding: 0;">
+                <div class="row">
+                    <!-- Carousel wrapper -->
+                    <div class="container mx-auto">
+                        <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel"
+                            data-mdb-carousel-init>
+                            <!-- Indicators -->
+                            <div class="carousel-indicators">
+                                @foreach ($articles as $key => $article)
+                                    <button type="button" data-mdb-target="#carouselBasicExample"
+                                        data-mdb-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"
+                                        aria-current="{{ $key === 0 ? 'true' : 'false' }}"
+                                        aria-label="Slide {{ $key + 1 }}"></button>
+                                @endforeach
                             </div>
+
+                            <!-- Inner -->
+                            <div class="carousel-inner">
+                                @foreach ($articles as $key => $article)
+                                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                        <a href="{{ route('article.show', ['article' => $article->id]) }}">
+                                            <img src="{{ asset('storage/' . $article->gambar_article) }}"
+                                                class="d-block w-100" alt="{{ $article->title }}" />
+                                        </a>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <a href="{{ route('article.show', ['article' => $article->id]) }}">
+                                                <h5>{{ $article->title }}</h5>
+                                            </a>
+                                            <p>{{ $article->created_at->format('F j, Y') }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample"
+                                data-mdb-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample"
+                                data-mdb-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-        <div class="row" style="background-color: rgba(16, 141, 141, 1); min-height: 10vh"></div>
-        <div class="row" style="min-height: 30vh;">
-            <div class="col-lg-12 d-flex justify-content-evenly align-items-center">
-
-                <!-- Three Buttons with the custom button style -->
-                <button class="button-64" role="button">
-                    <span class="text">E-Jurnal</span>
-                </button>
-                <button class="button-64" role="button">
-                    <span class="text">Donasi</span>
-                </button>
-
-            </div>
-        </div>
-        <div class="row justify-content-center align-items-center" style="min-height: 50vh">
-            <div class="col-lg-12 text-center">
-                <h5 class="fade-in">Sekilas Tentang</h5>
-                <h1 class="fade-in">AL-HIKMAH</h1>
-                <div class="paragraph-container">
-                    <div class="paragraph fade-in">
-                        <p id="paragraph1" contenteditable="false">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum neque id pretium
-                            lobortis. Cras volutpat eget erat a luctus. Nulla ut turpis ligula. Proin at accumsan magna.
-                            Vestibulum a erat porttitor, euismod diam non, viverra neque. Nulla facilisi. Sed nec mi et nibh
-                            varius maximus. Integer malesuada urna non nisi efficitur efficitur. Cras id pellentesque magna.
-                            Sed dui massa, lacinia id imperdiet ut, vestibulum eu sem. Pellentesque vulputate tincidunt
-                            finibus. Donec blandit purus non tellus rutrum pellentesque. Nullam fringilla nibh sit amet nibh
-                            sodales sagittis. Donec aliquam tincidunt nulla ac eleifend. Phasellus ut malesuada augue, in
-                            pulvinar nibh.
-                        </p>
-                    </div>
-                    <div class="paragraph fade-in">
-                        <p id="paragraph2" contenteditable="false">
-                            <!-- Your content here -->
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row" style="background-color: rgba(16, 141, 141, 1); min-height: 10vh"></div>
+    <div class="row" style="min-height: 30vh;">
+        <div class="col-lg-12 d-flex justify-content-evenly align-items-center">
+
+            <!-- Three Buttons with the custom button style -->
+            <a href="{{ route('showAll') }}" class="button-64 text-center" role="button">
+                <span class="text">E-Jurnal</span>
+            </a>
+            <button class="button-64" role="button">
+                <span class="text">Donasi</span>
+            </button>
+
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center" style="min-height: 50vh">
+        <div class="col-lg-12 text-center">
+            <h5 class="fade-in">Sekilas Tentang</h5>
+            <h1 class="fade-in">AL-HIKMAH</h1>
+            <div class="paragraph-container">
+                <div class="paragraph fade-in">
+                    <p id="paragraph1" contenteditable="false">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum neque id pretium
+                        lobortis. Cras volutpat eget erat a luctus. Nulla ut turpis ligula. Proin at accumsan magna.
+                        Vestibulum a erat porttitor, euismod diam non, viverra neque. Nulla facilisi. Sed nec mi et
+                        nibh
+                        varius maximus. Integer malesuada urna non nisi efficitur efficitur. Cras id pellentesque
+                        magna.
+                        Sed dui massa, lacinia id imperdiet ut, vestibulum eu sem. Pellentesque vulputate tincidunt
+                        finibus. Donec blandit purus non tellus rutrum pellentesque. Nullam fringilla nibh sit amet
+                        nibh
+                        sodales sagittis. Donec aliquam tincidunt nulla ac eleifend. Phasellus ut malesuada augue,
+                        in
+                        pulvinar nibh.
+                    </p>
+                </div>
+                <div class="paragraph fade-in">
+                    <p id="paragraph2" contenteditable="false">
+                        <!-- Your content here -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="news" class="row justify-content-center">
+        <div class="col-md-12 mb-5">
+            <h2 class="text-center">Al-Hikmah News</h2>
+        </div>
+
+        @php
+            $articles = $articles->reverse(); // Reverse the order of articles (newest first)
+        @endphp
+
+        @foreach ($articles->take(6) as $article)
+            <div class="col-md-3 mb-4 mx-3">
+                <div class="card">
+                    <img src="{{ asset('storage/' . $article->gambar_article) }}" class="card-img-top"
+                        alt="{{ $article->title }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ $article->title }}</h5>
+                        <p class="card-text">{!! str_limit($article->content, $limit = 120) !!}</p>
+                        <a href="{{ route('article.show', ['article' => $article->id]) }}" class="btn btn-primary">Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -155,32 +242,14 @@
         window.addEventListener('load', handleFadeIn); // Trigger on initial load
     </script>
     <script>
-        // Function to change the carousel slide every 7 seconds
-        function autoChangeCarousel() {
-            $('.carousel').carousel('next'); // Trigger the next slide button
-        }
+        // Initialization for ES Users
+        import {
+            Carousel,
+            initMDB
+        } from "mdb-ui-kit";
 
-        // Set an interval to call the function every 7 seconds
-        setInterval(autoChangeCarousel, 7000); // 7000 milliseconds = 7 seconds
-    </script>
-    <script>
-        $(document).ready(function() {
-            // Initialize the carousel
-            $('#myCarousel').carousel();
-
-            // Listen for the 'slid.bs.carousel' event
-            $('#myCarousel').on('slid.bs.carousel', function() {
-                var currentIndex = $(this).find('.active').index();
-                var slidesCount = $(this).find('.carousel-item').length;
-
-                // Check if the last slide has been reached
-                if (currentIndex === slidesCount - 1) {
-                    // Reset the carousel to the first slide after a delay of 7 seconds
-                    setTimeout(function() {
-                        $('#myCarousel').carousel(0);
-                    }, 7000);
-                }
-            });
+        initMDB({
+            Carousel
         });
     </script>
     <script>

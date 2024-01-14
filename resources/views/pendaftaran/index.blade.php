@@ -43,6 +43,17 @@
         .custom-modal img {
             height: auto;
         }
+
+        .input-group {
+            border: 2px solid #f2f2f2;
+            /* Light gray outline for the search bar */
+            border-radius: 5px;
+            padding: 0px;
+        }
+
+        .search-label {
+            border: none;
+        }
     </style>
 
     <div class="container mt-5">
@@ -50,6 +61,33 @@
             <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
                 <div class="card border-0">
                     <div class="card-body">
+                        <div class="row justify-content-start mb-4">
+                            <div class="col-lg-5">
+                                <form method="GET" action="">
+                                    <div class="input-group">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control search-label" name="search" />
+                                            <label class="form-label" for="form1">Search</label>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                id="searchDropdown" data-bs-toggle="dropdown" style="padding: 13px"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                Search In
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="searchDropdown">
+                                                {{-- <button class="dropdown-item" type="submit" name="search_field"
+                                                    value="barcode">Barcode</button> --}}
+                                                <button class="dropdown-item" type="submit" name="search_field"
+                                                    value="nama_lengkap">Nama</button>
+                                                <button class="dropdown-item" type="submit" name="search_field"
+                                                    value="nisn">NISN</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-between">
                             <h4 class="lead" style="color: #000000;">
                                 <b> DATA CALON SANTRI BARU </b>
@@ -73,7 +111,7 @@
                                         <th colspan="2">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-nowrap">
                                     @php
                                         $counter = 1; // Initialize the counter
                                     @endphp
@@ -86,19 +124,21 @@
                                             <td class="text-center">{!! $col->nisn ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#previewModal{{ $col->id }}">
+                                                    data-bs-target="#dokumenModal{{ $col->id }}">
                                                     <i class="bi bi-file-earmark-fill"></i>
                                                 </button>
+                                                @include('pendaftaran.modal_dokumen')
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                     data-bs-target="#previewModal{{ $col->id }}">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
+                                                @include('pendaftaran.modal_detail')
                                             </td>
                                             <td class="text-center">
                                                 @if ($col->verified)
-                                                <div class="badge bg-success rounded-pill">Verified</div>
+                                                    <div class="badge bg-success rounded-pill">Verified</div>
                                                 @else
                                                     <span class="badge bg-danger rounded-pill">Unverified</span>
                                                 @endif
@@ -121,53 +161,6 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                        <!-- Modal -->
-                                        <div class="modal fade custom-modal" id="previewModal{{ $col->id }}"
-                                            tabindex="-1" aria-labelledby="previewModalLabel{{ $col->id }}"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="previewModalLabel{{ $col->id }}"
-                                                            style="color: #ffffff;">Detail Santri</h5>
-                                                        <button type="button" class="btn-close btn-white"
-                                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Image on the right side -->
-
-                                                            <!-- Other content on the left side -->
-                                                            <div class="col-md-6">
-                                                                <p><strong>Nomor Induk:</strong> {{ $col->no_induk }}</p>
-                                                                <p><strong>NISN:</strong> {{ $col->nisn }}</p>
-                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}
-                                                                </p>
-                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}
-                                                                </p>
-                                                                <p><strong>Tanggal Lahir:</strong>
-                                                                    {{ $col->tanggal_lahir }}</p>
-                                                                <p><strong>Jenis Kelamin:</strong>
-                                                                    {{ $col->jenis_kelamin }}</p>
-                                                                <p><strong>Alamat:</strong> {{ $col->alamat }}</p>
-                                                                <p><strong>Nama Wali:</strong> {{ $col->nama_wali }}</p>
-                                                                <!-- You can add more details as needed -->
-                                                            </div>
-                                                            <div class="col-md-6 text-center">
-                                                                <img width="100%"
-                                                                    src="{{ asset('storage/' . $col->gambar_santri) }}"
-                                                                    alt="Gambar Santri" class="img-fluid img-thumbnail">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @empty
                                     @endforelse
                                 </tbody>

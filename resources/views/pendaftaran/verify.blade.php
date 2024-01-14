@@ -50,14 +50,9 @@
             <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
                 <div class="card border-0">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="lead" style="color: #000000;">
-                                <b> DATA CALON SANTRI BARU </b>
-                            </h4>
-                            <a href="{{ url('pendaftaran/create') }}" class="btn btn-dark mb-3">
-                                <i class="bi bi-plus"></i> Tambah Baru
-                            </a>
-                        </div>
+                        <h4 class="lead text-center" style="color: #000000;">
+                            <b> DATA CALON SANTRI BARU YANG TERVERIFIKASI </b>
+                        </h4>
                         {{-- Table --}}
                         <div class="table-responsive">
                             <table class="table">
@@ -70,15 +65,15 @@
                                         <th>Kelengkapan Dokumen</th>
                                         <th>Detail</th>
                                         <th>Status</th>
-                                        <th colspan="2">Aksi</th>
+                                        <th>Validator</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-nowrap">
                                     @php
                                         $counter = 1; // Initialize the counter
                                     @endphp
 
-                                    @forelse ($pendaftaran as $col)
+                                    @forelse ($pendaftaran->where('verified', true) as $col)
                                         <tr class="align-middle">
                                             <td>{{ $counter++ }}</td>
                                             <td class="text-center">{!! $col->no_registrasi ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
@@ -86,88 +81,28 @@
                                             <td class="text-center">{!! $col->nisn ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#previewModal{{ $col->id }}">
+                                                    data-bs-target="#dokumenModal{{ $col->id }}">
                                                     <i class="bi bi-file-earmark-fill"></i>
                                                 </button>
+                                                @include('pendaftaran.modal_dokumen')
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                     data-bs-target="#previewModal{{ $col->id }}">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
+                                                @include('pendaftaran.modal_detail')
                                             </td>
                                             <td class="text-center">
                                                 @if ($col->verified)
-                                                    <span class="text-success">Verified</span>
+                                                    <span class="badge bg-success rounded-pill">Verified</span>
                                                 @else
-                                                    <span class="text-danger">Unverified</span>
+                                                    <span class="badge bg-danger rounded-pill">Unverified</span>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a href="{{ url('pendaftaran/' . $col->id . '/edit') }}"
-                                                    class="btn btn-success">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form action="{{ url('pendaftaran/' . $col->id) }}" method="post"
-                                                    id="deleteForm{{ $col->id }}">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="button" class="btn btn-danger"
-                                                        onclick="confirmDelete('{{ $col->id }}')">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
+                                            <td>{{ $col->verified_by }}</td>
                                         </tr>
                                         <!-- Modal -->
-                                        <div class="modal fade custom-modal" id="previewModal{{ $col->id }}"
-                                            tabindex="-1" aria-labelledby="previewModalLabel{{ $col->id }}"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="previewModalLabel{{ $col->id }}"
-                                                            style="color: #ffffff;">Detail Santri</h5>
-                                                        <button type="button" class="btn-close btn-white"
-                                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Image on the right side -->
-
-                                                            <!-- Other content on the left side -->
-                                                            <div class="col-md-6">
-                                                                <p><strong>Nomor Induk:</strong> {{ $col->no_induk }}</p>
-                                                                <p><strong>NISN:</strong> {{ $col->nisn }}</p>
-                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}
-                                                                </p>
-                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}
-                                                                </p>
-                                                                <p><strong>Tanggal Lahir:</strong>
-                                                                    {{ $col->tanggal_lahir }}</p>
-                                                                <p><strong>Jenis Kelamin:</strong>
-                                                                    {{ $col->jenis_kelamin }}</p>
-                                                                <p><strong>Alamat:</strong> {{ $col->alamat }}</p>
-                                                                <p><strong>Nama Wali:</strong> {{ $col->nama_wali }}</p>
-                                                                <!-- You can add more details as needed -->
-                                                            </div>
-                                                            <div class="col-md-6 text-center">
-                                                                <img width="100%"
-                                                                    src="{{ asset('storage/' . $col->gambar_santri) }}"
-                                                                    alt="Gambar Santri" class="img-fluid img-thumbnail">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @empty
                                     @endforelse
                                 </tbody>
@@ -180,12 +115,4 @@
         </div>
     </div>
 
-    <script>
-        function confirmDelete(id) {
-            if (window.confirm("Are you sure you want to delete this item?")) {
-                // If the user clicks "OK", submit the form
-                document.getElementById('deleteForm' + id).submit();
-            }
-        }
-    </script>
 @endsection

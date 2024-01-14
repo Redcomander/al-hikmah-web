@@ -12,7 +12,8 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategori = Kategori::paginate(10);
+        return view('kategori.index', compact('kategori'));
     }
 
     /**
@@ -62,8 +63,9 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Kategori::destroy($id);
+        return redirect('/kategori');
     }
 }

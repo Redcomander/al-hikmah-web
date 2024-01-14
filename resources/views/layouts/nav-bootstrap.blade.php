@@ -121,10 +121,10 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
                         class="list-group-item list-group-item-action py-2 ripple {{ Request::is('teacher*') ? 'active' : '' }}"><i
                             class="fas fa-book-open-reader me-2"></i><span>Teacher Account</span></a>
                     <a href="#" class="list-group-item justify-center list-group-item-action py-2 ripple">
-                        <i class="fas fa-chalkboard-user me-1"></i><span>Management Ujian</span>
+                        <i class="fas fa-chalkboard-user me-1"></i><span>Management Ujian (Coming Soon)</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="far fa-calendar-days me-2"></i><span>Kalender Akademik</span></a>
+                            class="far fa-calendar-days me-2"></i><span>Kalender Akademik (Coming Soon)</span></a>
                     <div class="list-group list-group-flush mx-2">
                         <a class="list-group-item py-2 ripple">
                             <strong>
@@ -209,9 +209,7 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
         </div>
     </main>
     <!--Main layout-->
-    <script src="
-                                        https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js
-                                        "></script>
+    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.js"></script>
 
     <script>
         $(document).ready(function() {

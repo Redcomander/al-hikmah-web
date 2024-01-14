@@ -32,6 +32,10 @@ Route::get('/pendaftarandepan', function () {
     return view('pendaftarandepan');
 })->name('pendaftarandepan');
 
+Route::get('/verification', function () {
+    return view('verification');
+})->name('verification');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -40,6 +44,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+
+Route::get('/category/{category}', 'App\Http\Controllers\ArticleController@showByCategory')->name('showByCategory');
+Route::get('/articles', 'App\Http\Controllers\ArticleController@showAll')->name('showAll');
 Route::resource('article', ArticleController::class);
 
 Route::get('/', [ViewController::class, 'welcome'])->name('welcome');

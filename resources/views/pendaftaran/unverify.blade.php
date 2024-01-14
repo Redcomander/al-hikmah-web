@@ -65,6 +65,7 @@
                                         <th>Kelengkapan Dokumen</th>
                                         <th>Detail</th>
                                         <th>Status</th>
+                                        <th>Edit</th>
                                         <th>Verifikasi</th>
                                     </tr>
                                 </thead>
@@ -81,15 +82,17 @@
                                             <td class="text-center">{!! $col->nisn ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#previewModal{{ $col->id }}">
+                                                    data-bs-target="#dokumenModal{{ $col->id }}">
                                                     <i class="bi bi-file-earmark-fill"></i>
                                                 </button>
+                                                @include('pendaftaran.modal_dokumen')
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                     data-bs-target="#previewModal{{ $col->id }}">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
+                                                @include('pendaftaran.modal_detail')
                                             </td>
                                             <td class="text-center">
                                                 @if ($col->verified)
@@ -99,63 +102,25 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <form action="{{ url('pendaftaran/' . $col->id . '/verify') }}"
+                                                <a href="{{ url('pendaftaran/' . $col->id . '/edit') }}"
+                                                    class="btn btn-success">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form id="verifyForm{{ $col->id }}"
+                                                    action="{{ url('pendaftaran/' . $col->id . '/verify') }}"
                                                     method="post">
                                                     @csrf
                                                     @method('put')
-                                                    <button type="submit" class="btn btn-success">
+
+                                                    <button type="button" class="btn btn-success"
+                                                        onclick="confirmVerification({{ $col->id }})">
                                                         Verifikasi
                                                     </button>
                                                 </form>
                                             </td>
                                         </tr>
-                                        <!-- Modal -->
-                                        <div class="modal fade custom-modal" id="previewModal{{ $col->id }}"
-                                            tabindex="-1" aria-labelledby="previewModalLabel{{ $col->id }}"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="previewModalLabel{{ $col->id }}"
-                                                            style="color: #ffffff;">Detail Santri</h5>
-                                                        <button type="button" class="btn-close btn-white"
-                                                            data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Image on the right side -->
-
-                                                            <!-- Other content on the left side -->
-                                                            <div class="col-md-6">
-                                                                <p><strong>Nomor Induk:</strong> {{ $col->no_induk }}</p>
-                                                                <p><strong>NISN:</strong> {{ $col->nisn }}</p>
-                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}
-                                                                </p>
-                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}
-                                                                </p>
-                                                                <p><strong>Tanggal Lahir:</strong>
-                                                                    {{ $col->tanggal_lahir }}</p>
-                                                                <p><strong>Jenis Kelamin:</strong>
-                                                                    {{ $col->jenis_kelamin }}</p>
-                                                                <p><strong>Alamat:</strong> {{ $col->alamat }}</p>
-                                                                <p><strong>Nama Wali:</strong> {{ $col->nama_wali }}</p>
-                                                                <!-- You can add more details as needed -->
-                                                            </div>
-                                                            <div class="col-md-6 text-center">
-                                                                <img width="100%"
-                                                                    src="{{ asset('storage/' . $col->gambar_santri) }}"
-                                                                    alt="Gambar Santri" class="img-fluid img-thumbnail">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @empty
                                     @endforelse
                                 </tbody>
@@ -167,12 +132,11 @@
             </div>
         </div>
     </div>
-
     <script>
-        function confirmDelete(id) {
-            if (window.confirm("Are you sure you want to delete this item?")) {
-                // If the user clicks "OK", submit the form
-                document.getElementById('deleteForm' + id).submit();
+        function confirmVerification(id) {
+            var confirmation = confirm("Are you sure you want to verify?");
+            if (confirmation) {
+                document.getElementById('verifyForm' + id).submit();
             }
         }
     </script>

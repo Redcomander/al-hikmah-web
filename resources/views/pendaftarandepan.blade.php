@@ -3,7 +3,14 @@
 @section('content')
     <style>
         .section-one {
-            background: url('{{ asset('cover_pendaftaran_1.PNG') }}') center/cover no-repeat;
+            background: url('{{ asset('cover_pendaftaran_1.jpg') }}') center/cover no-repeat;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .section-one {
+                background: none;
+                /* Set to none to hide the background on mobile */
+            }
         }
 
         @media (max-width: 991.97px) {
@@ -21,9 +28,11 @@
             <div class="row align-items-center" style="height: 90vh;">
                 <div class="col-lg-7 col-md-7">
                     <div class="title-heading position-relative mt-4" style="z-index: 1;" data-aos="fade-right">
-                        <h1 id="heading-h1" class="heading mb-3"><span style="color: black;">Pendaftaran</span> <span class="text-success">Santri Baru</span>
+                        <h1 id="heading-h1" class="heading mb-3"><span style="color: black;">Pendaftaran</span> <span
+                                class="text-success">Santri Baru</span>
                         </h1>
-                        <p id="p-heading" class="para-desc">Selamat datang di Sistem pendaftaran daring (online) <br> <strong>Pondok Modern
+                        <p id="p-heading" class="para-desc">Selamat datang di Sistem pendaftaran daring (online) <br>
+                            <strong>Pondok Modern
                                 Al-Hikmah Utan Sumbawa</strong> Tahun Ajaran 2024-2025<br> bagi calon santri baru.</p>
                         <p id="p-heading"> <b>Gelombang I : 13 Januari - 31 Maret 2024</b> </p>
                         <p id="p-heading"> <b>Gelombang II : 1 April - 30 Juni 2024</b> </p>
@@ -192,7 +201,7 @@
                             </tr>
                             <tr>
                                 <td class="text-center"><b>TOTAL</b></td>
-                                <td><b> Rp 350.000,- </b></td>
+                                <td><b> Rp 550.000,- </b></td>
                             </tr>
                         </tbody>
                     </table>

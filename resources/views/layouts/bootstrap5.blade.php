@@ -6,25 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pondok Modern Al-Hikmah Utan</title>
     <!-- CSS LINK -->
-    <link rel="stylesheet" href="{{ asset('bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('bootstrap.icon.min.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"> --}}
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('layouts.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
-    <!-- JS LINK -->
-    <script src="{{ asset('bootstrap.bundle.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
     <!-- Style -->
     <style>
         .avatar {
@@ -112,6 +104,11 @@
             background: none;
         }
 
+        main {
+            margin-top: 120px;
+            /* Adjust the value based on your navigation bar height */
+        }
+
         @media (min-width: 768px) {
             .button-64 {
                 font-size: 24px;
@@ -127,45 +124,47 @@
 </head>
 
 <body style="min-height: 100vh; display: flex; flex-direction: column;">
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark nav-bg-color mb-3">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark nav-bg-color mb-3 fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ '/' }}">
-                <img class="logo-img img-fluid" style="max-width: 100%;" src="{{ asset('logo.png') }}" alt="Logo" />
+                <img class="logo-img img-fluid" style="max-width: 50%;" src="{{ asset('logo.png') }}" alt="Logo" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarButtonsExample"
+                aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarButtonsExample">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('/') ? 'active-link' : '' }}" href="/">Beranda</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Galeri</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('pendaftarandepan') ? 'active-link' : '' }}" href="{{ route('pendaftarandepan') }}">Pendaftaran</a>
+                        <a class="nav-link {{ Request::is('pendaftarandepan') ? 'active-link' : '' }}"
+                            href="{{ route('pendaftarandepan') }}">Pendaftaran</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a data-mdb-dropdown-init class="nav-link dropdown-toggle" href="#"
+                            id="navbarDropdownMenuLink" role="button" aria-expanded="false">
                             Lembaga
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Pengasuhan</a></li>
-                            <li><a class="dropdown-item" href="#">KMI</a></li>
-                            <li><a class="dropdown-item" href="#">Pramuka</a></li>
-                            <li><a class="dropdown-item" href="#">OPPH</a></li>
-                            <li><a class="dropdown-item" href="#">TPQ</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'Pengasuhan') }}">Pengasuhan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'KMI') }}">KMI</a></li>
+                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'Pramuka') }}">Pramuka</a></li>
+                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'OPPH') }}">OPPH</a></li>
+                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'TPQ') }}">TPQ</a></li>
+
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Informasi</a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <div class="d-flex align-items-center">
                     @auth
@@ -173,17 +172,16 @@
                         <!-- Display Login and Register buttons for guests (not authenticated users) -->
 
                         <div class="dropdown">
-                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
-                                id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a data-mdb-dropdown-init class="nav-link dropdown-toggle d-flex align-items-center"
+                                href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
                                 <img src="{{ asset('storage/' . Auth::user()->foto_guru) }}" class="rounded-circle"
                                     height="25" alt="Black and White Portrait of a Man" loading="lazy" />
                             </a>
 
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                                <li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAvatar">
+                                {{-- <li>
                                     <a class="dropdown-item" href="#">My profile</a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
@@ -300,19 +298,23 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-    <!-- Add your JavaScript scripts here, including Bootstrap if needed -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <!-- Add additional JavaScript files as needed -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.dropdown-toggle').dropdown();
+        AOS.init();
+    </script>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+    <script type="module">
+        // Initialization for ES Users
+        import {
+            Dropdown,
+            initMDB
+        } from "mdb-ui-kit";
+
+        initMDB({
+            Dropdown
         });
     </script>
-      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-      <script>
-        AOS.init();
-      </script>
-
 </body>
 
 </html>

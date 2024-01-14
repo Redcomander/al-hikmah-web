@@ -15,6 +15,9 @@
                             <a href="{{ url('article/create') }}" class="btn btn-dark">
                                 <i class="bi-plus"></i> Buat
                             </a>
+                            <a href="{{ url('kategori/') }}" class="btn btn-dark">
+                                Daftar Kategori
+                            </a>
                             <a href="{{ url('kategori/create') }}" class="btn btn-dark">
                                 <i class="bi-plus"></i> Buat Kategori
                             </a>
@@ -37,7 +40,7 @@
                                     @forelse ($article as $col)
                                         <tr class="align-middle">
                                             <td>{{ $col->title }}</td>
-                                            <td>{{ $col->Kategori->Kategori}}</td>
+                                            <td>{{ $col->Kategori->Kategori }}</td>
                                             <td>
                                                 <a href="{{ url('article/' . $col->id . '/edit') }}"
                                                     class="btn btn-sm btn-info">
@@ -45,11 +48,13 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <form action="{{ url('article/' . $col->id) }}" method="post">
+                                                <form action="{{ url('article/' . $col->id) }}" method="post"
+                                                    id="deleteForm{{ $col->id }}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-sm btn-danger">
-                                                        <i class="bi-trash text-white lead"></i>
+                                                    <button type="button" class="btn btn-danger"
+                                                        onclick="confirmDelete('{{ $col->id }}')">
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -123,4 +128,12 @@
             </div>
         </div>
     </div>
+    <script>
+        function confirmDelete(id) {
+            if (window.confirm("Are you sure you want to delete this item?")) {
+                // If the user clicks "OK", submit the form
+                document.getElementById('deleteForm' + id).submit();
+            }
+        }
+    </script>
 @endsection
