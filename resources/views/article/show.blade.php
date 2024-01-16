@@ -1,4 +1,4 @@
-@extends('layouts.bootstrap5') // You may need to adjust the layout
+@extends('layouts.bootstrap5')
 
 @section('content')
     <div class="container">
@@ -30,10 +30,10 @@
             <figcaption style="font-size: 18px; font-weight: bold;">
                 {{ $article->user->name }}</figcaption>
         </figure>
-    </div>
 
-    <!-- Include Quill.js library -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-    <!-- Initialize Quill on the quill-container element -->
-@endsection
+        <!-- Include Quill.js library -->
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+        <!-- Initialize Quill on the quill-container element -->
+    @endsection

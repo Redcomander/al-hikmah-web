@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('grade_3')->nullable();
             $table->string('wali_kelas')->nullable();
             $table->string('foto_guru')->nullable();
+            $table->string('status_user');
             $table->timestamps();
         });
     }

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PendaftaranExport;
 use App\Models\pendaftaran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Exporter;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendaftaranController extends Controller
 {
@@ -278,5 +282,13 @@ class PendaftaranController extends Controller
         }
 
         return redirect()->back()->with('error', 'Invalid request.');
+    }
+
+    public function export()
+    {
+        $timestamp = Carbon::now()->format('Ymd_His');
+        $filename = 'pendaftaran_data_' . $timestamp . '.xlsx';
+
+        return Excel::download(new PendaftaranExport, $filename);
     }
 }

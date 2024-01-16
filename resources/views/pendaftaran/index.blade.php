@@ -61,7 +61,10 @@
             <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
                 <div class="card border-0">
                     <div class="card-body">
-                        <div class="row justify-content-start mb-4">
+                        <div class="row justify-content-end mb-4">
+                            <h4 class="lead text-center mb-4" style="color: #000000;">
+                                <b> DATA CALON SANTRI BARU </b>
+                            </h4>
                             <div class="col-lg-5">
                                 <form method="GET" action="">
                                     <div class="input-group">
@@ -88,13 +91,17 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <h4 class="lead" style="color: #000000;">
-                                <b> DATA CALON SANTRI BARU </b>
-                            </h4>
+
+                        <div class="d-flex justify-content-end gap-3">
+
                             <a href="{{ url('pendaftaran/create') }}" class="btn btn-dark mb-3">
                                 <i class="bi bi-plus"></i> Tambah Baru
                             </a>
+                            <div>
+                                <a href="{{ route('pendaftaran.export') }}" class="btn btn-success">
+                                    <i class="fas fa-file-excel"></i> Export
+                                </a>
+                            </div>
                         </div>
                         {{-- Table --}}
                         <div class="table-responsive">

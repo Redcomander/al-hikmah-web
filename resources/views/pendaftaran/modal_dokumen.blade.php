@@ -7,8 +7,8 @@
                 </h5>
                 <button type="button" class="btn-close btn-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
+            <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                <div class="row table-responsive">
                     <!-- Image on the right side -->
 
                     <!-- Other content on the left side -->
