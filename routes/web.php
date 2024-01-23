@@ -6,6 +6,7 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
@@ -62,3 +63,5 @@ Route::put('pendaftaran/{id}/verify', 'App\Http\Controllers\PendaftaranControlle
 Route::get('pendaftaran/unverify', [PendaftaranController::class, 'belumTerverifikasi'])->name('pendaftaran.unverify');
 Route::get('pendaftaran/verify', [PendaftaranController::class, 'terverifikasi'])->name('pendaftaran.verify');
 Route::resource('pendaftaran', PendaftaranController::class);
+
+Route::get('/test-s3', [TestController::class, 'testS3']);

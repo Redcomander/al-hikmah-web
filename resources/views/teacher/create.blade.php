@@ -67,6 +67,15 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-sm-12 bg-white custom-form">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="post" action="{{ url('teacher') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
@@ -82,8 +91,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                     <div class="mb-3">
-                        <label for="foto_guru" class="form-label">Foto</label>
-                        <input type="file" class="form-control" id="foto_guru" name="foto_guru">
+                        @livewire('teacher-image-upload')
                     </div>
                     <div class="mb-3">
                         <label for="wali_kelas" class="form-label">Wali Kelas</label>
@@ -154,9 +162,18 @@
                             <option value="-">-</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-dark rounded-pill me-2"><i class="bi bi-send"></i> Submit</button>
+                    <button type="submit" class="btn btn-dark rounded-pill me-2"><i class="bi bi-send"></i>
+                        Submit</button>
             </div>
             </form>
         </div>
     </div>
+    @livewireScripts
+
+    <!-- Initialize Livewire -->
+    <script>
+        Livewire.on('fileUploadProgress', progress => {
+            window.livewire.emit('updateFileUploadProgress', progress);
+        });
+    </script>
 @endsection

@@ -201,7 +201,7 @@
                             </tr>
                             <tr>
                                 <td class="text-center"><b>TOTAL</b></td>
-                                <td><b> Rp 550.000,- </b></td>
+                                <td><b> Rp 525.000,- </b></td>
                             </tr>
                         </tbody>
                     </table>

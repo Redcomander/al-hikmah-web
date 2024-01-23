@@ -120,9 +120,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @php
-                                            $counter = 1; // Initialize the counter
-                                        @endphp
+                                    @php
+                                        $counter = 1; // Initialize the counter
+                                    @endphp
 
                                     @forelse ($student as $col)
                                         <tr class="align-middle">
@@ -145,8 +145,8 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                    data-bs-target="#previewModal{{ $col->id }}">
+                                                <button type="button" class="btn btn-info" data-mdb-ripple-init
+                                                    data-mdb-modal-init data-mdb-target="#previewModal{{ $col->id }}">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
                                             </td>
@@ -160,7 +160,8 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="previewModalLabel{{ $col->id }}"
                                                             style="color: #ffffff;">Detail Santri</h5>
-                                                        <button type="button" class="btn-close btn-white" data-bs-dismiss="modal"
+                                                        <button type="button" class="btn-close btn-white"
+                                                            data-mdb-ripple-init data-mdb-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -171,29 +172,35 @@
                                                             <div class="col-md-6">
                                                                 <p><strong>Nomor Induk:</strong> {{ $col->no_induk }}</p>
                                                                 <p><strong>NISN:</strong> {{ $col->nisn }}</p>
-                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}</p>
-                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}</p>
-                                                                <p><strong>Tanggal Lahir:</strong> {{ $col->tanggal_lahir }}</p>
-                                                                <p><strong>Jenis Kelamin:</strong> {{ $col->jenis_kelamin }}</p>
+                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}
+                                                                </p>
+                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}
+                                                                </p>
+                                                                <p><strong>Tanggal Lahir:</strong>
+                                                                    {{ $col->tanggal_lahir }}</p>
+                                                                <p><strong>Jenis Kelamin:</strong>
+                                                                    {{ $col->jenis_kelamin }}</p>
                                                                 <p><strong>Alamat:</strong> {{ $col->alamat }}</p>
                                                                 <p><strong>Nama Wali:</strong> {{ $col->nama_wali }}</p>
                                                                 <!-- You can add more details as needed -->
                                                             </div>
-                                                                <div class="col-md-6 text-center">
-                                                                    <img width="100%" src="{{ asset('storage/' . $col->gambar_santri) }}" alt="Gambar Santri"
-                                                                        class="img-fluid img-thumbnail">
-                                                                </div>
+                                                            <div class="col-md-6 text-center">
+                                                                <img width="100%"
+                                                                    src="{{ asset('storage/' . $col->gambar_santri) }}"
+                                                                    alt="Gambar Santri" class="img-fluid img-thumbnail">
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
+                                                        data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     @empty
+                                        <td colspan="7" class="text-center">No Data Available</td>
                                     @endforelse
                                 </tbody>
                             </table>

@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="dokumenModal{{ $col->id }}" style="color: #ffffff;">Kelengkapan Dokumen
                 </h5>
-                <button type="button" class="btn-close btn-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-white" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                 <div class="row table-responsive">
@@ -245,7 +245,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

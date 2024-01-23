@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class TeacherController extends Controller
 {
@@ -34,6 +35,7 @@ class TeacherController extends Controller
         // Validate the request to ensure the file is present and is an image (you may add more specific validation rules)
         $request->validate([
             'foto_guru' => 'required|image',
+            'email' => ['required', 'email', Rule::unique('users', 'email') ]
         ]);
 
         // Handle file upload if you have a file input (e.g., 'gambar_santri')

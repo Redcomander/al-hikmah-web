@@ -130,15 +130,15 @@
                                             <td>{!! $col->nama_lengkap ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
                                             <td class="text-center">{!! $col->nisn ?? '<i class="bi bi-x-circle-fill text-danger"></i>' !!}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#dokumenModal{{ $col->id }}">
+                                                <button type="button" class="btn btn-primary" data-mdb-ripple-init
+                                                    data-mdb-modal-init data-mdb-target="#dokumenModal{{ $col->id }}">
                                                     <i class="bi bi-file-earmark-fill"></i>
                                                 </button>
                                                 @include('pendaftaran.modal_dokumen')
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                    data-bs-target="#previewModal{{ $col->id }}">
+                                                <button type="button" class="btn btn-info" data-mdb-ripple-init
+                                                    data-mdb-modal-init data-mdb-target="#previewModal{{ $col->id }}">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
                                                 @include('pendaftaran.modal_detail')

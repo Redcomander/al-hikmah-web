@@ -130,11 +130,6 @@
             background-repeat: no-repeat;
         }
 
-        /* Hide the file input visually */
-        input[type="file"] {
-            position: absolute;
-            left: -9999px;
-        }
     </style>
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -150,25 +145,7 @@
                         <label for="email" class="form-label">Email</label>
                         <input class="form-control" type="email" id="email" name="email" value="{{ $user->email }}" placeholder="Email">
                     </div>
-                    <div class="mb-3">
-                        <label for="foto_guru" class="image-container">
-                            @if ($user->foto_guru)
-                                <div class="image-preview"
-                                    style="background-image: url('{{ asset('storage/' . $user->foto_guru) }}');"></div>
-                            @else
-                                <div class="image-preview" style="background-color: #ccc; text-align: center; line-height: 150px;">
-                                    <span style="color: #333; font-weight: bold;">Insert Image</span>
-                                </div>
-                            @endif
-                            <div class="change-overlay">
-                                <i class="fas fa-camera"></i>
-                                <span>Change</span>
-                            </div>
-                        </label>
-                        <input type="file" id="foto_guru" name="foto_guru" accept="image/*" style="display: none;">
-                        <input disabled type="hidden" name="current_foto_guru" value="{{ $user->foto_guru }}">
-                    </div>
-
+                    @livewire('teacher-edit', ['userId' => $user->id])
                     <div class="mb-3">
                         <label for="wali_kelas" class="form-label">Wali Kelas</label>
                         <select name="wali_kelas" id="wali_kelas" class="form-select">
@@ -240,29 +217,5 @@
             </div>
         </div>
     </div>
+@livewireScripts
 @endsection
-
-<script>
-    // Trigger the file input when clicking the image or "Change" text
-    document.addEventListener("DOMContentLoaded", function() {
-        const imageContainer = document.querySelector('.image-container');
-        const fileInput = document.querySelector('input[type="file"]');
-        const imagePreview = document.querySelector('.image-preview');
-
-        imageContainer.addEventListener("click", function() {
-            fileInput.click();
-        });
-
-        // Update the image preview when a file is selected
-        fileInput.addEventListener("change", function() {
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.style.backgroundImage = `url('${e.target.result}')`;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    });
-</script>

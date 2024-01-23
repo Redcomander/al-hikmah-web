@@ -68,7 +68,8 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-sm-12 bg-white custom-form">
-                <form method="post" action="{{ url('student') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('student') }}" enctype="multipart/form-data"
+                    wire:submit.prevent="store">
                     @csrf
                     <div class="mb-3">
                         <label for="no_induk" class="form-label">Nomor Induk</label>
@@ -80,12 +81,12 @@
                             placeholder="Nama Lengkap">
                     </div>
                     <div class="mb-3">
-                        <label for="gambar_santri" class="form-label">Gambar Santri</label>
-                        <input type="file" class="form-control" id="gambar_santri" name="gambar_santri">
+                        @livewire('student-image-upload')
                     </div>
                     <div class="mb-3">
                         <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir">
+                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
+                            placeholder="Tempat Lahir">
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
@@ -116,5 +117,14 @@
             </form>
         </div>
     </div>
-    </div>
+
+    <!-- Include Livewire scripts -->
+    @livewireScripts
+
+    <!-- Initialize Livewire -->
+    <script>
+        Livewire.on('fileUploadProgress', progress => {
+            window.livewire.emit('updateFileUploadProgress', progress);
+        });
+    </script>
 @endsection

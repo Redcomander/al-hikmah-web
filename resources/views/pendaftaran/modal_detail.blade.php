@@ -5,7 +5,8 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="previewModalLabel{{ $col->id }}" style="color: #ffffff;">Detail Santri
                 </h5>
-                <button type="button" class="btn-close btn-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-white" data-mdb-ripple-init data-mdb-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                 <div class="row table-rensponsive table-fixed">
@@ -472,8 +473,8 @@
                                 <td class="text-center">
                                     @if ($col->foto_3x4 !== null)
                                         <!-- Assuming $col->foto_3x4 contains the image URL -->
-                                        <img src="{{ asset('storage/' . $col->foto_3x4) }}" alt="Foto 3x4" class="img-thumbnail"
-                                            style="max-width: 100px; max-height: 100px;">
+                                        <img src="{{ asset('storage/' . $col->foto_3x4) }}" alt="Foto 3x4"
+                                            class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
                                     @else
                                         <p class="text-danger">Gambar Tidak Tersedia</p>
                                     @endif
@@ -485,7 +486,8 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-mdb-ripple-init
+                    data-mdb-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

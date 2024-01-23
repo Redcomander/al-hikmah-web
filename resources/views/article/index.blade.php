@@ -60,8 +60,8 @@
                                             </td>
                                             <td>{{ $col->status }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
-                                                    data-bs-target="#previewModal{{ $col->id }}">
+                                                <button type="button" class="btn btn-sm btn-success" data-mdb-ripple-init
+                                                    data-mdb-modal-init data-mdb-target="#previewModal{{ $col->id }}">
                                                     <i class="bi-eye text-white lead"></i>
                                                 </button>
                                             </td>
@@ -76,8 +76,8 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="previewModalLabel{{ $col->id }}">
                                                             Preview Article</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                        <button type="button" class="btn-close" data-mdb-ripple-init
+                                                            data-mdb-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <h2 style="font-weight: bold; font-size: 24px;">{{ $col->title }}
@@ -104,7 +104,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
+                                                            data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
