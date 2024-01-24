@@ -94,7 +94,7 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
     <header>
 
         <!-- Sidebar -->
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+        <nav id="navbarSupportedContent" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-2 mt-5">
                     <a href="{{ route('dashboard') }}"
@@ -150,8 +150,9 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
             <!-- Container wrapper -->
             <div class="container-fluid">
                 <!-- Toggle button -->
-                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
-                    aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <button data-mdb-collapse-init class="navbar-toggler" type="button"
+                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
 
@@ -161,7 +162,7 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
                 </a>
 
                 <!-- Navbar links -->
-                <div class="navbar-collapse d-none" id="navbarNav">
+                <div class="collapse navbar-collapse d-none" id="navbarSupportedContent">
                     <div id="nav-avatar" class="d-flex flex-row align-items-center ms-auto">
                         <!-- Avatar -->
                         <div id="avatar" class="d-flex flex-row align-items-center me-3">
@@ -209,13 +210,17 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
         import {
             Dropdown,
             Modal,
+            Input,
             Ripple,
+            Collapse,
             initMDB
         } from "mdb-ui-kit";
 
         initMDB({
             Dropdown,
             Modal,
+            Collapse,
+            Input,
             Ripple
         });
     </script>

@@ -97,7 +97,7 @@
             <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
                 <div class="card border-0">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mb-3">
                             <h4 class="lead" style="color: #000000;">
                                 <b> DATA SANTRI </b>
                             </h4>
@@ -106,109 +106,18 @@
                             </a>
                         </div>
                         {{-- Table --}}
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>No</th>
-                                        <th>Nomor Induk</th>
-                                        <th>NISN</th>
-                                        <th scope="col" class="col-6">Nama Lengkap</th>
-                                        <th>Edit</th>
-                                        <th>Hapus</th>
-                                        <th>Detail</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $counter = 1; // Initialize the counter
-                                    @endphp
-
-                                    @forelse ($student as $col)
-                                        <tr class="align-middle">
-                                            <td>{{ $counter++ }}</td>
-                                            <td>{{ $col->no_induk }}</td>
-                                            <td>{{ $col->nisn }}</td>
-                                            <td>{{ $col->nama_lengkap }}</td>
-                                            <td>
-                                                <a href="{{ url('student/' . $col->id . '/edit') }}" class="btn btn-edit">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form action="{{ url('student/' . $col->id) }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-delete">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-info" data-mdb-ripple-init
-                                                    data-mdb-modal-init data-mdb-target="#previewModal{{ $col->id }}">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- Modal -->
-                                        <div class="modal fade custom-modal" id="previewModal{{ $col->id }}"
-                                            tabindex="-1" aria-labelledby="previewModalLabel{{ $col->id }}"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="previewModalLabel{{ $col->id }}"
-                                                            style="color: #ffffff;">Detail Santri</h5>
-                                                        <button type="button" class="btn-close btn-white"
-                                                            data-mdb-ripple-init data-mdb-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <!-- Image on the right side -->
-
-                                                            <!-- Other content on the left side -->
-                                                            <div class="col-md-6">
-                                                                <p><strong>Nomor Induk:</strong> {{ $col->no_induk }}</p>
-                                                                <p><strong>NISN:</strong> {{ $col->nisn }}</p>
-                                                                <p><strong>Nama Lengkap:</strong> {{ $col->nama_lengkap }}
-                                                                </p>
-                                                                <p><strong>Tempat Lahir:</strong> {{ $col->tempat_lahir }}
-                                                                </p>
-                                                                <p><strong>Tanggal Lahir:</strong>
-                                                                    {{ $col->tanggal_lahir }}</p>
-                                                                <p><strong>Jenis Kelamin:</strong>
-                                                                    {{ $col->jenis_kelamin }}</p>
-                                                                <p><strong>Alamat:</strong> {{ $col->alamat }}</p>
-                                                                <p><strong>Nama Wali:</strong> {{ $col->nama_wali }}</p>
-                                                                <!-- You can add more details as needed -->
-                                                            </div>
-                                                            <div class="col-md-6 text-center">
-                                                                <img width="100%"
-                                                                    src="{{ asset('storage/' . $col->gambar_santri) }}"
-                                                                    alt="Gambar Santri" class="img-fluid img-thumbnail">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                        data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <td colspan="7" class="text-center">No Data Available</td>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{ $student->links('pagination::bootstrap-5') }}
-                        </div>
+                        @livewire('student-index')
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function confirmDelete(id) {
+            if (window.confirm("Are you sure you want to delete this item?")) {
+                // If the user clicks "OK", submit the form
+                document.getElementById('deleteForm' + id).submit();
+            }
+        }
+    </script>
 @endsection

@@ -63,6 +63,17 @@
         .custom-form button[name="draft"]:hover {
             background-color: #23272b;
         }
+
+        :root {
+            --progress-height: 10px;
+            --progress-font-size: 14px;
+            --progress-bg: #f8f9fa;
+            --progress-border-radius: 8px;
+            --progress-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --progress-bar-color: #007bff;
+            --progress-bar-bg: #fff;
+            --progress-bar-transition: 0.2s ease;
+        }
     </style>
     <div class="container mt-5">
         <div class="row justify-content-center">

@@ -1,4 +1,3 @@
-
 @if ($teachers->count() > 0)
     <div class="list-group">
         @foreach ($teachers as $col)
@@ -70,7 +69,8 @@
                         <a href="{{ url('teacher/' . $col->id . '/edit') }}" class="btn btn-success me-2">
                             <i class="bi bi-pencil"></i> Edit
                         </a>
-                        <form action="{{ url('teacher/' . $col->id) }}" method="post">
+                        <form action="{{ url('teacher/' . $col->id) }}" method="post"
+                            id="deleteForm{{ $col->id }}">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger"
