@@ -14,19 +14,15 @@
         .paragraph-container {
             display: flex;
             justify-content: center;
-            text-align: justify;
         }
 
         .paragraph {
-            width: 35%;
+            width: 70%;
             /* Use the full width on small screens */
-            margin: 0 10px;
-            /* Reduce margin to decrease space between paragraphs */
         }
 
         .paragraph p {
             margin-bottom: 20px;
-            text-align: justify;
         }
 
         /* Add opacity to sections initially */
@@ -170,27 +166,25 @@
             <h1 class="fade-in">AL-HIKMAH</h1>
             <div class="paragraph-container">
                 <div class="paragraph fade-in">
-                    <p id="paragraph1" contenteditable="false">
-
+                    <p class="text-ceter">
                         Pondok Modern Al-Hikmah Utan, Sumbawa, adalah lembaga pendidikan Islam yang mengadopsi Kurikulum
                         Modern Islam (KMI) dengan mengintegrasikan program Sekolah Menengah Pertama (SMP) dan Madrasah
                         Aliyah (MA). Terletak di Utan, Sumbawa, pondok modern ini bertujuan mencetak generasi muslim unggul
                         dalam ilmu pengetahuan umum dan keagamaan.
-
+                    </p>
+                    <p class="text-center">
                         Pondok Modern Al-Hikmah Utan membedakan diri dengan penekanan pada pembinaan karakter dan
                         kepemimpinan, menciptakan lingkungan pendidikan yang kondusif bagi perkembangan spiritual dan
                         intelektual siswa. Siswa-siswanya diajarkan untuk tidak hanya cerdas secara akademis, tetapi juga
                         memiliki moralitas yang tinggi.
+                    </p>
 
+                    <p class="text-center">
                         Sebagai tambahan, pondok modern ini mengimplementasikan penggunaan bahasa Arab dan Inggris dalam
                         aktivitas sehari-hari, memastikan bahwa siswa-siswinya terampil dan nyaman berkomunikasi dalam kedua
                         bahasa tersebut. Ini memberikan keunggulan tambahan bagi siswa dalam beradaptasi dengan lingkungan
                         global yang multikultural.
-                    </p>
-                </div>
-                <div class="paragraph fade-in">
-                    <p id="paragraph2" contenteditable="false">
-                        <!-- Your content here -->
+
                     </p>
                 </div>
             </div>
@@ -254,24 +248,5 @@
         initMDB({
             Carousel
         });
-    </script>
-    <script>
-        function splitParagraphs() {
-            var paragraph1 = document.getElementById('paragraph1');
-            var paragraph2 = document.getElementById('paragraph2');
-            var text = paragraph1.innerText;
-
-            if (text.length > 50) {
-                var firstPart = text.substring(0, 504);
-                var secondPart = text.substring(504);
-
-                paragraph1.innerText = firstPart;
-                paragraph2.innerText = secondPart;
-            }
-        }
-
-        // Call the function when the page loads and when the content of paragraph1 changes
-        window.addEventListener('DOMContentLoaded', splitParagraphs);
-        document.getElementById('paragraph1').addEventListener('input', splitParagraphs);
     </script>
 @endsection

@@ -162,8 +162,8 @@
                             href="{{ url('/gallery') }}">Galeri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('pendaftarandepan', 'pendaftaran/create') ? 'active-link' : '' }}"
-                            href="{{ route('pendaftarandepan') }}">Pendaftaran</a>
+                        <a class="nav-link {{ Request::is('PSB2024', 'pendaftaran/create') ? 'active-link' : '' }}"
+                            href="{{ route('PSB2024') }}">Pendaftaran</a>
                     </li>
                     <li class="nav-item d-none d-md-inline">
                         <a data-mdb-dropdown-init class="nav-link dropdown-toggle" href="#"

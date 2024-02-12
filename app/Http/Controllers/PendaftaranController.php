@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PendaftaranExport;
-use App\Models\pendaftaran;
+use App\Models\Pendaftaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +20,7 @@ class PendaftaranController extends Controller
         $search = $request->input('search');
         $searchField = $request->input('search_field');
 
-        $pendaftaran = pendaftaran::query();
+        $pendaftaran = Pendaftaran::query();
 
         if (!empty($search)) {
             $pendaftaran->where($searchField, 'LIKE', '%' . $search . '%');
@@ -73,13 +73,13 @@ class PendaftaranController extends Controller
         $fileFotoRapotPath = $request->hasFile('file_foto_rapot') ? $request->file('file_foto_rapot')->store('file_foto_rapot', 'public') : null;
 
         // Get the maximum value of nomor_registrasi from the database
-        $maxNomorPendaftaran = pendaftaran::max('no_registrasi');
+        $maxNomorPendaftaran = Pendaftaran::max('no_registrasi');
 
         // Increment the maximum value to generate the next nomor_pendaftaran
         $nextNomorPendaftaran = $maxNomorPendaftaran + 1;
 
         // Create the article with the stored file path and status
-        pendaftaran::create([
+        Pendaftaran::create([
             "no_registrasi" => $nextNomorPendaftaran,
             "email_pendaftar" => $request->email_pendaftar,
             "nama_lengkap" => $request->nama_lengkap,
@@ -158,7 +158,7 @@ class PendaftaranController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(pendaftaran $pendaftaran)
+    public function edit(Pendaftaran $pendaftaran)
     {
         return view('pendaftaran.edit', compact('pendaftaran'));
     }
@@ -182,7 +182,7 @@ class PendaftaranController extends Controller
         $fileKartuKksPath = $request->hasFile('file_kartu_kks') ? $request->file('file_kartu_kks')->store('file_kartu_kks', 'public') : $currentPendaftaran->file_kartu_kks;
         $fileFotoRapotPath = $request->hasFile('file_foto_rapot') ? $request->file('file_foto_rapot')->store('file_foto_rapot', 'public') : $currentPendaftaran->file_foto_rapot;
 
-        pendaftaran::where('id', $id)->update([
+        Pendaftaran::where('id', $id)->update([
             "no_registrasi" => $request->no_registrasi,
             "email_pendaftar" => $request->email_pendaftar,
             "nama_lengkap" => $request->nama_lengkap,
@@ -249,26 +249,26 @@ class PendaftaranController extends Controller
      */
     public function destroy($id)
     {
-        pendaftaran::destroy($id);
+        Pendaftaran::destroy($id);
         return redirect('/pendaftaran');
     }
 
     // PendaftaranController.php
     public function belumTerverifikasi()
     {
-        $pendaftaran = pendaftaran::paginate(10);
+        $pendaftaran = Pendaftaran::paginate(10);
         return view('pendaftaran.unverify', compact('pendaftaran'));
     }
 
     public function terverifikasi()
     {
-        $pendaftaran = pendaftaran::paginate(10);
+        $pendaftaran = Pendaftaran::paginate(10);
         return view('pendaftaran.verify', compact('pendaftaran'));
     }
 
     public function verify($id)
     {
-        $pendaftaran = pendaftaran::find($id);
+        $pendaftaran = Pendaftaran::find($id);
 
         if ($pendaftaran) {
             $verifiedByName = Auth::user()->name; // Assuming the user model has a 'name' attribute

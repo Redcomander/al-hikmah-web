@@ -132,7 +132,7 @@ class ArticleController extends Controller
     public function showByCategory($category)
     {
         // Get the category ID based on the category name
-        $categoryId = kategori::where('Kategori', $category)->value('id');
+        $categoryId = Kategori::where('Kategori', $category)->value('id');
 
         // Fetch articles for the selected category
         $articles = article::where('kategori_id', $categoryId)->paginate(10);

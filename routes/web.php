@@ -33,9 +33,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/pendaftarandepan', function () {
+Route::get('/PSB2024', function () {
     return view('pendaftarandepan');
-})->name('pendaftarandepan');
+})->name('PSB2024');
 
 Route::get('/verification', function () {
     return view('verification');
