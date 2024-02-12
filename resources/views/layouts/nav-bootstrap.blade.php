@@ -94,104 +94,108 @@ https://cdn.jsdelivr.net/npm/cropperjs@1.6.1/dist/cropper.min.css
     <header>
 
         <!-- Sidebar -->
-        <nav id="navbarSupportedContent" class="collapse d-lg-block sidebar collapse bg-white">
-            <div class="position-sticky">
-                <div class="list-group list-group-flush mx-2 mt-5">
-                    <a href="{{ route('dashboard') }}"
-                        class="nav-link list-group-item list-group-item-action py-2 ripple {{ Request::is('dashboard') ? 'active' : '' }}"
-                        aria-current="true">
-                        <i class="fas fa-tachometer-alt fa-fw me-2"></i><span>Main Dashboard</span>
-                    </a>
-                    <a href="{{ url('/article') }}"
-                        class="list-group-item list-group-item-action py-2 ripple {{ Request::is('article*') ? 'active' : '' }}">
-                        <i class="fas fa-file-lines me-2"></i><span>Article</span>
-                    </a>
-                    <a href="{{ url('/student') }}"
-                        class="list-group-item list-group-item-action py-2 ripple {{ Request::is('student*') ? 'active' : '' }}"><i
-                            class="fas fa-user me-2"></i><span>Student</span></a>
-                    <a href="{{ url('/teacher') }}"
-                        class="list-group-item list-group-item-action py-2 ripple {{ Request::is('teacher*') ? 'active' : '' }}"><i
-                            class="fas fa-book-open-reader me-2"></i><span>Teacher Account</span></a>
-                    <a href="#" class="list-group-item justify-center list-group-item-action py-2 ripple">
-                        <i class="fas fa-chalkboard-user me-1"></i><span>Management Ujian (Coming Soon)</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="far fa-calendar-days me-2"></i><span>Kalender Akademik (Coming Soon)</span></a>
-                    <div class="list-group list-group-flush mx-2">
-                        <a class="list-group-item py-2 ripple">
-                            <strong>
-                                <i class="fa-solid fa-book"></i> Pendaftaran
-                            </strong>
+        @if (auth()->check())
+            <nav id="navbarSupportedContent" class="collapse d-lg-block sidebar collapse bg-white">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-2 mt-5">
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-link list-group-item list-group-item-action py-2 ripple {{ Request::is('dashboard') ? 'active' : '' }}"
+                            aria-current="true">
+                            <i class="fas fa-tachometer-alt fa-fw me-2"></i><span>Main Dashboard</span>
                         </a>
-                        <!-- Normal list items again -->
-                        <a href="{{ url('/pendaftaran') }}"
-                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran') ? 'active' : '' }}">
-                            <i class="fas fa-some-icon me-2"></i><span>Daftar Pendaftaran</span>
+                        <a href="{{ url('/article') }}"
+                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('article*') ? 'active' : '' }}">
+                            <i class="fas fa-file-lines me-2"></i><span>Article</span>
                         </a>
+                        <a href="{{ url('/student') }}"
+                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('student*') ? 'active' : '' }}"><i
+                                class="fas fa-user me-2"></i><span>Student</span></a>
+                        <a href="{{ url('/teacher') }}"
+                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('teacher*') ? 'active' : '' }}"><i
+                                class="fas fa-book-open-reader me-2"></i><span>Teacher Account</span></a>
+                        <a href="#" class="list-group-item justify-center list-group-item-action py-2 ripple">
+                            <i class="fas fa-chalkboard-user me-1"></i><span>Management Ujian (Coming Soon)</span>
                         </a>
-                        <a href="{{ route('pendaftaran.verify') }}"
-                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran/verify*') ? 'active' : '' }}">
-                            <i class="fas fa-some-icon me-2"></i><span>Terverifikasi</span>
-                        </a>
+                        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                                class="far fa-calendar-days me-2"></i><span>Kalender Akademik (Coming
+                                Soon)</span></a>
+                        @if (auth()->user()->hasGrade('Website Admin', 'Developer', 'Panitia Penerimaan Calon Santri Baru'))
+                            <div class="list-group list-group-flush mx-2">
+                                <a class="list-group-item py-2 ripple">
+                                    <strong>
+                                        <i class="fa-solid fa-book"></i> Pendaftaran
+                                    </strong>
+                                </a>
+                                <!-- Normal list items again -->
+                                <a href="{{ url('/pendaftaran') }}"
+                                    class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran') ? 'active' : '' }}">
+                                    <i class="fas fa-some-icon me-2"></i><span>Daftar Pendaftaran</span>
+                                </a>
+                                </a>
+                                <a href="{{ route('pendaftaran.verify') }}"
+                                    class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran/verify*') ? 'active' : '' }}">
+                                    <i class="fas fa-some-icon me-2"></i><span>Terverifikasi</span>
+                                </a>
 
-                        <a href="{{ route('pendaftaran.unverify') }}"
-                            class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran/unverify*') ? 'active' : '' }}">
-                            <i class="fas fa-some-icon me-2"></i><span>Belum Terverifikasi</span>
-                        </a>
+                                <a href="{{ route('pendaftaran.unverify') }}"
+                                    class="list-group-item list-group-item-action py-2 ripple {{ Request::is('pendaftaran/unverify*') ? 'active' : '' }}">
+                                    <i class="fas fa-some-icon me-2"></i><span>Belum Terverifikasi</span>
+                                </a>
 
+                            </div>
+                        @endif
                     </div>
+            </nav>
+            <!-- Sidebar -->
 
-                </div>
-        </nav>
-        <!-- Sidebar -->
+            <!-- Navbar -->
+            <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+                <!-- Container wrapper -->
+                <div class="container-fluid">
+                    <!-- Toggle button -->
+                    <button data-mdb-collapse-init class="navbar-toggler" type="button"
+                        data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
 
-        <!-- Navbar -->
-        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-            <!-- Container wrapper -->
-            <div class="container-fluid">
-                <!-- Toggle button -->
-                <button data-mdb-collapse-init class="navbar-toggler" type="button"
-                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
+                    <!-- Brand -->
+                    <a class="navbar-brand" href="{{ '/' }}">
+                        <img src="logo2.png" height="60" alt="" loading="lazy" />
+                    </a>
 
-                <!-- Brand -->
-                <a class="navbar-brand" href="{{ '/' }}">
-                    <img src="logo2.png" height="60" alt="" loading="lazy" />
-                </a>
-
-                <!-- Navbar links -->
-                <div class="collapse navbar-collapse d-none" id="navbarSupportedContent">
-                    <div id="nav-avatar" class="d-flex flex-row align-items-center ms-auto">
-                        <!-- Avatar -->
-                        <div id="avatar" class="d-flex flex-row align-items-center me-3">
-                            <div class="cropper-container me-3"
-                                style="width: 30px; height: 30px; overflow: hidden; border-radius: 50%;">
-                                <img id="avatar-image" src="{{ asset('storage/' . Auth::user()->foto_guru) }}"
-                                    class="cropper-image rounded-circle" alt="" loading="lazy" />
+                    <!-- Navbar links -->
+                    <div class="collapse navbar-collapse d-none" id="navbarSupportedContent">
+                        <div id="nav-avatar" class="d-flex flex-row align-items-center ms-auto">
+                            <!-- Avatar -->
+                            <div id="avatar" class="d-flex flex-row align-items-center me-3">
+                                <div class="cropper-container me-3"
+                                    style="width: 30px; height: 30px; overflow: hidden; border-radius: 50%;">
+                                    <img id="avatar-image" src="{{ asset('storage/' . Auth::user()->foto_guru) }}"
+                                        class="cropper-image rounded-circle" alt="" loading="lazy" />
+                                </div>
+                                <div class="d-flex flex-column align-items-left">
+                                    <p class="m-0">{{ Auth::user()->name }}</p>
+                                    <p class="m-0"><b>{{ Auth::user()->grade_1 }}</b></p>
+                                </div>
                             </div>
-                            <div class="d-flex flex-column align-items-left">
-                                <p class="m-0">{{ Auth::user()->name }}</p>
-                                <p class="m-0"><b>{{ Auth::user()->grade_1 }}</b></p>
-                            </div>
+
+
+                            <!-- Logout button -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button id="logout-btn" class="btn btn-danger" type="submit">
+                                    Logout
+                                </button>
+                            </form>
                         </div>
-
-
-                        <!-- Logout button -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button id="logout-btn" class="btn btn-danger" type="submit">
-                                Logout
-                            </button>
-                        </form>
                     </div>
+                    </ul>
                 </div>
-                </ul>
-            </div>
-            <!-- Container wrapper -->
-        </nav>
-        <!-- Navbar -->
+                <!-- Container wrapper -->
+            </nav>
+            <!-- Navbar -->
+        @endif
     </header>
     <!--Main Navigation-->
 

@@ -65,20 +65,22 @@
                     </div>
 
                     <!-- Buttons -->
-                    <div class="mt-3 mt-md-0 d-flex justify-content-center">
-                        <a href="{{ url('teacher/' . $col->id . '/edit') }}" class="btn btn-success me-2">
-                            <i class="bi bi-pencil"></i> Edit
-                        </a>
-                        <form action="{{ url('teacher/' . $col->id) }}" method="post"
-                            id="deleteForm{{ $col->id }}">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger"
-                                onclick="confirmDelete('{{ $col->id }}')">
-                                <i class="bi bi-trash"></i> Hapus
-                            </button>
-                        </form>
-                    </div>
+                    @if (auth()->user()->hasGrade('Website Admin', 'Developer'))
+                        <div class="mt-3 mt-md-0 d-flex justify-content-center">
+                            <a href="{{ url('teacher/' . $col->id . '/edit') }}" class="btn btn-success me-2">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                            <form action="{{ url('teacher/' . $col->id) }}" method="post"
+                                id="deleteForm{{ $col->id }}">
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger"
+                                    onclick="confirmDelete('{{ $col->id }}')">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             </div>
         @endforeach

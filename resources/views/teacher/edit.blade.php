@@ -184,6 +184,7 @@
                             <option value="Pengajaran">Pengajaran</option>
                             <option value="Pengasuhan Santri">Pengasuhan Santri</option>
                             <option value="Panitia Ujian">Panitia Ujian</option>
+                            <option value="Panitia Penerimaan Calon Santri Baru">Panitia Penerimaan Calon Santri Baru</option>
                         </select>
                         <select name="grade_2" id="grade_2" class="form-select mb-2">
                             <option value="{{ $user->grade_2 }}">{{ $user->grade_2 }}</option>
@@ -196,6 +197,7 @@
                             <option value="Pengajaran">Pengajaran</option>
                             <option value="Pengasuhan Santri">Pengasuhan Santri</option>
                             <option value="Panitia Ujian">Panitia Ujian</option>
+                            <option value="Panitia Penerimaan Calon Santri Baru">Panitia Penerimaan Calon Santri Baru</option>
                             <option value="-">-</option>
                         </select>
                         <select name="grade_3" id="grade_3" class="form-select">
@@ -209,6 +211,7 @@
                             <option value="Pengajaran">Pengajaran</option>
                             <option value="Pengasuhan Santri">Pengasuhan Santri</option>
                             <option value="Panitia Ujian">Panitia Ujian</option>
+                            <option value="Panitia Penerimaan Calon Santri Baru">Panitia Penerimaan Calon Santri Baru</option>
                             <option value="-">-</option>
                         </select>
                     </div>

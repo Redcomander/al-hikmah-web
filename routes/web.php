@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +10,9 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
+use App\Livewire\GalleryCreate;
+use App\Livewire\GalleryEdit;
+use App\Livewire\GalleryIndex;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +69,9 @@ Route::get('pendaftaran/verify', [PendaftaranController::class, 'terverifikasi']
 Route::resource('pendaftaran', PendaftaranController::class);
 
 Route::get('/test-s3', [TestController::class, 'testS3']);
+
+
+Route::get('/gallery', GalleryIndex::class)->name('gallery.index');
+Route::get('/gallery/create', GalleryCreate::class)->name('gallery.create');
+Route::get('/gallery/edit/{id}', GalleryEdit::class)->name('gallery.edit');
+Route::resource('gallery', GalleryController::class);

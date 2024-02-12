@@ -9,7 +9,8 @@
                 <div class="input-group">
                     <select class="form-select mdb-select colorful-select dropdown-primary" wire:model="selectedColumn">
                         @foreach ($columns as $column)
-                            <option class="select-option" value="{{ $column }}">{{ ucfirst(str_replace('_', ' ', $column)) }}</option>
+                            <option class="select-option" value="{{ $column }}">
+                                {{ ucfirst(str_replace('_', ' ', $column)) }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -26,8 +27,10 @@
                         <th>Nomor Induk</th>
                         <th>NISN</th>
                         <th scope="col" class="col-6">Nama Lengkap</th>
+                        @if (auth()->user()->hasGrade('Website Admin', 'Developer'))
                         <th>Edit</th>
                         <th>Hapus</th>
+                        @endif
                         <th>Detail</th>
                     </tr>
                 </thead>
@@ -42,22 +45,24 @@
                             <td>{{ $col->no_induk }}</td>
                             <td>{{ $col->nisn }}</td>
                             <td>{{ $col->nama_lengkap }}</td>
-                            <td>
-                                <a href="{{ url('student/' . $col->id . '/edit') }}" class="btn btn-edit">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <form action="{{ url('student/' . $col->id) }}" method="post"
-                                    id="deleteForm{{ $col->id }}">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="button" class="btn btn-danger"
-                                        onclick="confirmDelete('{{ $col->id }}')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
+                            @if (auth()->user()->hasGrade('Website Admin', 'Developer'))
+                                <td>
+                                    <a href="{{ url('student/' . $col->id . '/edit') }}" class="btn btn-edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="{{ url('student/' . $col->id) }}" method="post"
+                                        id="deleteForm{{ $col->id }}">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="confirmDelete('{{ $col->id }}')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            @endif
                             <td>
                                 <button type="button" class="btn btn-info" data-mdb-ripple-init data-mdb-modal-init
                                     data-mdb-target="#previewModal{{ $col->id }}">

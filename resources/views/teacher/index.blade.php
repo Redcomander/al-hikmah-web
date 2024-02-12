@@ -54,10 +54,10 @@
                                         <i class="bi bi-plus"></i> Baru
                                     </a>
                                 @endif
-                            @endif
                         </div>
                         {{-- Table --}}
                         @livewire('teacher-index')
+                        @endif
                     </div>
                 </div>
             </div>

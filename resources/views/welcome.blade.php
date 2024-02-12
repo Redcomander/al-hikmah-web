@@ -171,18 +171,21 @@
             <div class="paragraph-container">
                 <div class="paragraph fade-in">
                     <p id="paragraph1" contenteditable="false">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum neque id pretium
-                        lobortis. Cras volutpat eget erat a luctus. Nulla ut turpis ligula. Proin at accumsan magna.
-                        Vestibulum a erat porttitor, euismod diam non, viverra neque. Nulla facilisi. Sed nec mi et
-                        nibh
-                        varius maximus. Integer malesuada urna non nisi efficitur efficitur. Cras id pellentesque
-                        magna.
-                        Sed dui massa, lacinia id imperdiet ut, vestibulum eu sem. Pellentesque vulputate tincidunt
-                        finibus. Donec blandit purus non tellus rutrum pellentesque. Nullam fringilla nibh sit amet
-                        nibh
-                        sodales sagittis. Donec aliquam tincidunt nulla ac eleifend. Phasellus ut malesuada augue,
-                        in
-                        pulvinar nibh.
+
+                        Pondok Modern Al-Hikmah Utan, Sumbawa, adalah lembaga pendidikan Islam yang mengadopsi Kurikulum
+                        Modern Islam (KMI) dengan mengintegrasikan program Sekolah Menengah Pertama (SMP) dan Madrasah
+                        Aliyah (MA). Terletak di Utan, Sumbawa, pondok modern ini bertujuan mencetak generasi muslim unggul
+                        dalam ilmu pengetahuan umum dan keagamaan.
+
+                        Pondok Modern Al-Hikmah Utan membedakan diri dengan penekanan pada pembinaan karakter dan
+                        kepemimpinan, menciptakan lingkungan pendidikan yang kondusif bagi perkembangan spiritual dan
+                        intelektual siswa. Siswa-siswanya diajarkan untuk tidak hanya cerdas secara akademis, tetapi juga
+                        memiliki moralitas yang tinggi.
+
+                        Sebagai tambahan, pondok modern ini mengimplementasikan penggunaan bahasa Arab dan Inggris dalam
+                        aktivitas sehari-hari, memastikan bahwa siswa-siswinya terampil dan nyaman berkomunikasi dalam kedua
+                        bahasa tersebut. Ini memberikan keunggulan tambahan bagi siswa dalam beradaptasi dengan lingkungan
+                        global yang multikultural.
                     </p>
                 </div>
                 <div class="paragraph fade-in">
@@ -259,8 +262,8 @@
             var text = paragraph1.innerText;
 
             if (text.length > 50) {
-                var firstPart = text.substring(0, 500);
-                var secondPart = text.substring(50);
+                var firstPart = text.substring(0, 504);
+                var secondPart = text.substring(504);
 
                 paragraph1.innerText = firstPart;
                 paragraph2.innerText = secondPart;

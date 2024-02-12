@@ -17,6 +17,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Style -->
     <style>
         .avatar {
@@ -32,6 +33,11 @@
 
         .nav-item .nav-link:hover {
             position: relative;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
         }
 
         .nav-item .nav-link:hover::before {
@@ -120,6 +126,16 @@
             margin-top: 0;
             padding-top: 0;
         }
+
+        .custom-accordion-item {
+            background-color: rgba(16, 141, 141, 1);
+        }
+
+        /* Add this style to set the text color for accordion buttons */
+        .custom-accordion-button {
+            color: rgba(16, 141, 141, 1);
+            /* Set text color to white or any color that provides good contrast */
+        }
     </style>
 </head>
 
@@ -140,28 +156,83 @@
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Galeri</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('pendaftarandepan') ? 'active-link' : '' }}"
+                        <a class="nav-link {{ Request::is('gallery') ? 'active-link' : '' }}"
+                            href="{{ url('/gallery') }}">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('pendaftarandepan', 'pendaftaran/create') ? 'active-link' : '' }}"
                             href="{{ route('pendaftarandepan') }}">Pendaftaran</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item d-none d-md-inline">
                         <a data-mdb-dropdown-init class="nav-link dropdown-toggle" href="#"
                             id="navbarDropdownMenuLink" role="button" aria-expanded="false">
                             Lembaga
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'Pengasuhan') }}">Pengasuhan</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{{ route('showByCategory', 'Pengasuhan') }}">Pengasuhan</a></li>
                             <li><a class="dropdown-item" href="{{ route('showByCategory', 'KMI') }}">KMI</a></li>
-                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'Pramuka') }}">Pramuka</a></li>
+                            <li><a class="dropdown-item" href="{{ route('showByCategory', 'Pramuka') }}">Pramuka</a>
+                            </li>
                             <li><a class="dropdown-item" href="{{ route('showByCategory', 'OPPH') }}">OPPH</a></li>
                             <li><a class="dropdown-item" href="{{ route('showByCategory', 'TPQ') }}">TPQ</a></li>
-
                         </ul>
                     </li>
+
+                    <!-- Accordion for mobile view -->
+                    <div class="accordion accordion-flush d-md-none mb-3 custom-accordion-item"
+                        id="accordionFlushExample">
+                        <div class="accordion-item custom-accordion-item">
+                            <h2 class="accordion-header" id="flush-headingPengasuhan">
+                                <button data-mdb-collapse-init
+                                    class="accordion-button collapsed custom-accordion-item text-white" type="button"
+                                    data-mdb-toggle="collapse" data-mdb-target="#flush-collapsePengasuhan"
+                                    aria-expanded="false" aria-controls="flush-collapsePengasuhan">
+                                    Lembaga
+                                </button>
+                            </h2>
+                            <div id="flush-collapsePengasuhan" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingPengasuhan" data-mdb-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <!-- Content for Pengasuhan -->
+                                    <a class="dropdown-item text-white"
+                                        href="{{ route('showByCategory', 'Pengasuhan') }}">Pengasuhan</a>
+                                </div>
+                            </div>
+                            <div id="flush-collapsePengasuhan" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingPengasuhan" data-mdb-parent="#accordionFlushExample">
+                                <div class="accordion-body text-white">
+                                    <!-- Content for Pengasuhan -->
+                                    <a class="dropdown-item" href="{{ route('showByCategory', 'KMI') }}">KMI</a>
+                                </div>
+                            </div>
+                            <div id="flush-collapsePengasuhan" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingPengasuhan" data-mdb-parent="#accordionFlushExample">
+                                <div class="accordion-body text-white">
+                                    <!-- Content for Pengasuhan -->
+                                    <a class="dropdown-item"
+                                        href="{{ route('showByCategory', 'Pramuka') }}">Pramuka</a>
+                                </div>
+                            </div>
+                            <div id="flush-collapsePengasuhan" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingPengasuhan" data-mdb-parent="#accordionFlushExample">
+                                <div class="accordion-body text-white">
+                                    <!-- Content for Pengasuhan -->
+                                    <a class="dropdown-item" href="{{ route('showByCategory', 'OPPH') }}">OPPH</a>
+                                </div>
+                            </div>
+                            <div id="flush-collapsePengasuhan" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingPengasuhan" data-mdb-parent="#accordionFlushExample">
+                                <div class="accordion-body text-white">
+                                    <!-- Content for Pengasuhan -->
+                                    <a class="dropdown-item" href="{{ route('showByCategory', 'TPQ') }}">TPQ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Informasi</a>
                     </li> --}}
@@ -170,8 +241,7 @@
                     @auth
 
                         <!-- Display Login and Register buttons for guests (not authenticated users) -->
-
-                        <div class="dropdown">
+                        <div class="dropdown d-none d-md-block">
                             <a data-mdb-dropdown-init class="nav-link dropdown-toggle d-flex align-items-center"
                                 href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
                                 <img src="{{ asset('storage/' . Auth::user()->foto_guru) }}" class="rounded-circle"
@@ -192,6 +262,42 @@
                                     </form>
                                 </li>
                             </ul>
+                        </div>
+
+                        {{-- Accordion Mobile View --}}
+
+                        <div class="accordion accordion-flush d-md-none mb-3 custom-accordion-item" id="AvatarAccordion">
+                            <div class="accordion-item custom-accordion-item">
+                                <h2 class="accordion-header" id="flush-HeaderAvatar">
+                                    <button data-mdb-collapse-init
+                                        class="accordion-button collapsed custom-accordion-item text-white" type="button"
+                                        data-mdb-toggle="collapse" data-mdb-target="#flush-AvatarAccordion"
+                                        aria-expanded="false" aria-controls="flush-AvatarAccordion">
+                                        <img src="{{ asset('storage/' . Auth::user()->foto_guru) }}"
+                                            class="rounded-circle" height="25" alt="Black and White Portrait of a Man"
+                                            loading="lazy" />
+                                    </button>
+                                </h2>
+                                <div id="flush-AvatarAccordion" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-HeaderAvatar" data-mdb-parent="#AvatarAccordion">
+                                    <div class="accordion-body">
+                                        <!-- Content for Pengasuhan -->
+                                        <a class="dropdown-item text-white" href="{{ route('dashboard') }}">Dashboard</a>
+                                    </div>
+                                </div>
+                                <div id="flush-AvatarAccordion" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-HeaderAvatar" data-mdb-parent="#AvatarAccordion">
+                                    <div class="accordion-body text-white">
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Repeat similar code for Pramuka, OPPH, and TPQ -->
                         </div>
                     @else
                         <a class="btn btn-outline-light me-2" href="{{ route('login') }}">Login</a>
@@ -267,7 +373,7 @@
                             <a href="/" class="text-white">Beranda</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-white">Galeri</a>
+                            <a href="{{ route('gallery.index') }}" class="text-white">Galeri</a>
                         </p>
                         <p>
                             <a href="#!" class="text-white">Informasi</a>
@@ -299,6 +405,8 @@
     </footer>
     <!-- Footer -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
     <script>
         AOS.init();
     </script>
@@ -313,6 +421,30 @@
 
         initMDB({
             Dropdown
+        });
+    </script>
+    <script>
+        // Check the screen width on page load
+        function checkScreenWidth() {
+            if (window.innerWidth < 768) {
+                // Mobile view: Initialize Accordion
+                $('.nav-link').removeAttr('data-mdb-toggle');
+                $('.dropdown-menu').addClass('collapse');
+                $('.accordion').removeClass('d-none');
+            } else {
+                // Desktop view: Remove Accordion initialization
+                $('.nav-link').attr('data-mdb-toggle', 'dropdown');
+                $('.dropdown-menu').removeClass('collapse');
+                $('.accordion').addClass('d-none');
+            }
+        }
+
+        // Check the screen width when the page loads
+        checkScreenWidth();
+
+        // Check the screen width when the window is resized
+        window.addEventListener('resize', function() {
+            checkScreenWidth();
         });
     </script>
 </body>

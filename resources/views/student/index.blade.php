@@ -101,12 +101,16 @@
                             <h4 class="lead" style="color: #000000;">
                                 <b> DATA SANTRI </b>
                             </h4>
-                            <a href="{{ url('student/create') }}" class="btn btn-dark mb-3">
-                                <i class="bi bi-plus"></i> Baru
-                            </a>
+                            @if (auth()->check())
+                                @if (auth()->user()->hasGrade('Website Admin', 'Developer'))
+                                    <a href="{{ url('student/create') }}" class="btn btn-dark mb-3">
+                                        <i class="bi bi-plus"></i> Baru
+                                    </a>
+                                @endif
                         </div>
                         {{-- Table --}}
                         @livewire('student-index')
+                        @endif
                     </div>
                 </div>
             </div>
